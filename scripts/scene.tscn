@@ -75,7 +75,7 @@ position = Vector2(573, 126)
 texture = ExtResource("1_enfp4")
 
 [node name="Player" parent="." instance=ExtResource("2_ajgdr")]
-position = Vector2(158, 265)
+position = Vector2(160, 210)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(290, 227)
