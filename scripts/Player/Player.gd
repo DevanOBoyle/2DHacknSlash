@@ -13,6 +13,7 @@ var jump_pressed = false
 var falling = false
 var sprites : Array[Sprite2D]
 var direction : Vector2 = Vector2.ZERO
+var facing_right : bool = true
 
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
@@ -31,9 +32,11 @@ func hide_animations() -> void:
 
 func update_facing_direction() -> void:
 	if (direction.x < 0):
+		facing_right = false
 		for sprite in sprites:
 			sprite.flip_h = true
 	elif (direction.x > 0):
+		facing_right = true
 		for sprite in sprites:
 			sprite.flip_h = false
 

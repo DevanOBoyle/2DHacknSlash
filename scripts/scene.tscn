@@ -69,20 +69,32 @@ physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_trg3f")
 
 [node name="Scene" type="Node2D"]
+position = Vector2(-4, 0)
 
 [node name="Background" type="Sprite2D" parent="."]
-position = Vector2(573, 126)
+position = Vector2(-3, -1)
 texture = ExtResource("1_enfp4")
 
 [node name="Player" parent="." instance=ExtResource("2_ajgdr")]
-position = Vector2(160, 210)
+position = Vector2(-380, 61)
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Player"]
+remote_path = NodePath("../../Camera2D")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(290, 227)
+position = Vector2(-380, 61)
 zoom = Vector2(3.5, 3.5)
+process_callback = 0
+limit_smoothed = true
+position_smoothing_enabled = true
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+drag_left_margin = 0.33
+drag_right_margin = 0.0
 script = ExtResource("3_qrue7")
 
 [node name="GrassTileSet" type="TileMap" parent="."]
+position = Vector2(-540, -149)
 tile_set = SubResource("TileSet_ulb5s")
 format = 2
 layer_0/name = "Grass"

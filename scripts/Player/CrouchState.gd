@@ -32,8 +32,9 @@ func state_input(event : InputEvent):
 		attack()
 
 func attack():
-	is_attacking = true
-	playback.travel(attack_animation)
+	if (is_attacking == false):
+		is_attacking = true
+		playback.travel(attack_animation)
 	
 	
 func jump():
