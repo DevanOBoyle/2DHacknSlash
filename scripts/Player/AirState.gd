@@ -3,8 +3,10 @@ extends State
 class_name AirState
 
 @export var landing_state : State
+@export var wall_state : State
 @export var descend_animation : String = "JumpDescend"
 @export var landing_animation : String = "Land"
+@export var wall_animation : String = "WallHold"
 @export var jump_sprite : Sprite2D
 const JUMP_VELOCITY = -300
 const RISING_ACCELERATION = -100
@@ -23,6 +25,8 @@ func state_input(event: InputEvent):
 func state_process(delta):
 	if (character.is_on_floor()):
 		next_state = landing_state
+	if (character.is_on_wall()):
+		next_state = wall_state
 	if character.velocity.y >= 0:
 		character.velocity.y += (character.gravity + fall_gravity) * delta
 		if (falling != true):
@@ -42,9 +46,11 @@ func state_process(delta):
 			rising_acceleration += 5
 		
 func on_exit():
+	rising_acceleration = RISING_ACCELERATION
+	fall_gravity = 0
+	falling = false
 	if (next_state == landing_state):
-		rising_acceleration = RISING_ACCELERATION
-		fall_gravity = 0
-		falling = false
 		playback.travel(landing_animation)
+	if (next_state == wall_state):
+		playback.travel(wall_animation)
 		
