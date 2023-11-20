@@ -59,8 +59,10 @@ func attack():
 	if (character.direction.y < 0):
 		playback.travel(attack_up_animation)
 	elif (attack_state.timer2.is_stopped()):
+		print("hi")
 		playback.travel(attack1_animation)
 	else:
+		print("hello")
 		playback.travel(attack_state.next_attack)
 	next_state = attack_state
 

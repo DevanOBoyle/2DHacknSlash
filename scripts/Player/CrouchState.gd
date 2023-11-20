@@ -14,7 +14,11 @@ class_name CrouchState
 var is_attacking : bool = false
 var ATTACK_VELOCITY = 300
 
+
 func state_process(delta):
+	if (!character.is_on_floor()):
+		is_attacking = false
+		next_state = air_state
 	if (is_attacking):
 		if (crouch_sprite.flip_h == false):
 			character.velocity.x = ATTACK_VELOCITY
@@ -53,5 +57,5 @@ func stand():
 
 func _on_animation_tree_animation_finished(anim_name: StringName) -> void:
 	if (anim_name == "Crouch_Attack"):
-		playback.travel("Crouch_Idle")
 		is_attacking = false
+		playback.travel("Crouch_Idle")
