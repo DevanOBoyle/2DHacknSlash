@@ -13,6 +13,12 @@ extends State
 var hanging = true
 var timer_started = false
 
+func on_enter():
+	if (character.get_wall_normal().x == 1):
+		character.change_direction(true)
+	else:
+		character.change_direction(false)
+
 func state_input(event: InputEvent):
 	if (event.is_action_pressed("move_down")):
 		playback.travel(wall_slide_name)
@@ -49,10 +55,12 @@ func _on_animation_tree_animation_finished(anim_name: StringName) -> void:
 func jump():
 	character.velocity.y = character.JUMP_VELOCITY
 	air_state.jump_pressed = true;
+	air_state.from_wall = true;
 	playback.travel(jump_animation)
 	next_state = air_state
 
 func fall():
+	air_state.from_wall = true;
 	playback.travel(descend_animation)
 	next_state = air_state
 

@@ -30,15 +30,17 @@ func hide_animations() -> void:
 	for sprite in sprites:
 		sprite.hide()
 
+func change_direction(direction : bool) -> void:
+	for sprite in sprites:
+		sprite.flip_h = direction
+
 func update_facing_direction() -> void:
 	if (direction.x < 0):
+		change_direction(true)
 		facing_right = false
-		for sprite in sprites:
-			sprite.flip_h = true
 	elif (direction.x > 0):
+		change_direction(false)
 		facing_right = true
-		for sprite in sprites:
-			sprite.flip_h = false
 
 func _physics_process(delta: float) -> void:
 

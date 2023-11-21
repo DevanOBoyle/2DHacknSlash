@@ -15,6 +15,8 @@ var rising_acceleration = 0
 var fall_gravity = 0
 var jump_pressed = false
 var falling = false
+var from_wall = false
+var wall_jump_multiplier = 2
 
 
 func state_input(event: InputEvent):
@@ -34,8 +36,13 @@ func state_process(delta):
 			jump_sprite.show()
 			playback.travel(descend_animation)
 			falling = true
+			can_move = true
 	elif character.velocity.y < 0:
 		character.velocity.y += (character.gravity + rising_acceleration) * delta
+		
+		if (from_wall):
+			can_move = false
+			character.velocity.x = character.get_wall_normal().x * character.SPEED * wall_jump_multiplier
 		
 	if (Input.is_action_just_released("jump")):
 		jump_pressed = false
@@ -49,6 +56,7 @@ func on_exit():
 	rising_acceleration = RISING_ACCELERATION
 	fall_gravity = 0
 	falling = false
+	from_wall = false
 	if (next_state == landing_state):
 		playback.travel(landing_animation)
 	if (next_state == wall_state):
