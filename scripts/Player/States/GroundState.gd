@@ -6,6 +6,7 @@ class_name GroundState
 @export var crouch_state : State
 @export var attack_state : State
 @export var jump_animation : String = "JumpAscend"
+@export var descend_animation : String = "JumpDescend"
 @export var attack1_animation : String = "Attack1"
 @export var attack1_2_animation : String = "Attack1-2"
 @export var attack2_2_animation : String = "Attack2-2"
@@ -16,6 +17,8 @@ class_name GroundState
 @export var jump_sprite : Sprite2D
 @export var attack_sprite : Sprite2D
 @export var crouch_sprite : Sprite2D
+@onready var timer : Timer = $Timer
+var timer_started = false
 
 func on_enter():
 	if (character.velocity.x != 0):
@@ -27,7 +30,14 @@ func on_enter():
 
 func state_process(delta):
 	if (!character.is_on_floor()):
-		next_state = air_state
+		if (not timer_started):
+			timer.start()
+			timer_started = true
+			playback.travel(descend_animation)
+		else:
+			if (timer.is_stopped()):
+				timer_started = false
+				next_state = air_state
 	elif (character.direction.y > 0):
 		crouch()
 	elif (character.velocity.x != 0):

@@ -1,0 +1,130 @@
+[gd_scene load_steps=18 format=3 uid="uid://chwskyh30npyb"]
+
+[ext_resource type="Script" path="res://scripts/Enemy/Enemy.gd" id="1_ucrac"]
+[ext_resource type="Texture2D" uid="uid://7v6jupfx2o3p" path="res://assets/Enemies/BanditGrunt.png" id="2_5i5xy"]
+[ext_resource type="Script" path="res://scripts/Enemy/Damageable.gd" id="3_lm7ja"]
+[ext_resource type="Script" path="res://scripts/Enemy/EnemyStateMachine.gd" id="4_00i8t"]
+[ext_resource type="Script" path="res://scripts/Enemy/IdleState.gd" id="5_6b86y"]
+[ext_resource type="Script" path="res://scripts/Enemy/AirState.gd" id="6_4spxh"]
+
+[sub_resource type="Animation" id="Animation_hj73r"]
+resource_name = "Idle"
+length = 1.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.5, 0.7, 0.9, 1, 1.1, 1.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8]
+}
+
+[sub_resource type="Animation" id="Animation_8xrwl"]
+resource_name = "Walk"
+length = 0.78
+loop_mode = 1
+step = 0.13
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.13, 0.26, 0.39, 0.52, 0.65),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [17, 18, 19, 20, 21, 22]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_j0il4"]
+_data = {
+"Idle": SubResource("Animation_hj73r"),
+"Walk": SubResource("Animation_8xrwl")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4qqpy"]
+size = Vector2(14, 31)
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_c54xf"]
+animation = &"Idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_kljv6"]
+animation = &"Walk"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_0gxx2"]
+animation = &"Walk"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_6wo4a"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_c54xf")
+blend_point_0/pos = 0.0
+blend_point_1/node = SubResource("AnimationNodeAnimation_kljv6")
+blend_point_1/pos = 1.0
+blend_point_2/node = SubResource("AnimationNodeAnimation_0gxx2")
+blend_point_2/pos = -1.0
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_tkfhw"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_uyp3w"]
+states/Idle/node = SubResource("AnimationNodeBlendSpace1D_6wo4a")
+states/Idle/position = Vector2(372, 100)
+transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_tkfhw")]
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_7r5xi"]
+
+[node name="Enemy" type="CharacterBody2D"]
+script = ExtResource("1_ucrac")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-5, 0)
+texture = ExtResource("2_5i5xy")
+hframes = 39
+frame = 17
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_j0il4")
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(3, -1.5)
+shape = SubResource("RectangleShape2D_4qqpy")
+
+[node name="Damageable" type="Node" parent="."]
+script = ExtResource("3_lm7ja")
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="EnemyStateMachine" type="Node" parent="." node_paths=PackedStringArray("character", "animation_tree", "current_state")]
+script = ExtResource("4_00i8t")
+character = NodePath("..")
+animation_tree = NodePath("../AnimationTree")
+current_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="EnemyStateMachine" node_paths=PackedStringArray("air_state")]
+script = ExtResource("5_6b86y")
+air_state = NodePath("../Air")
+
+[node name="Timer" type="Timer" parent="EnemyStateMachine/Idle"]
+wait_time = 2.0
+autostart = true
+
+[node name="Air" type="Node" parent="EnemyStateMachine" node_paths=PackedStringArray("idle_state")]
+script = ExtResource("6_4spxh")
+idle_state = NodePath("../Idle")
+can_move = false
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeStateMachine_uyp3w")
+anim_player = NodePath("../AnimationPlayer")
+parameters/playback = SubResource("AnimationNodeStateMachinePlayback_7r5xi")
+parameters/Idle/blend_position = 0
+
+[connection signal="timeout" from="EnemyStateMachine/Idle/Timer" to="EnemyStateMachine/Idle" method="_on_timer_timeout"]

@@ -17,7 +17,7 @@ var next_attack : String = attack1_name
 var movement_attack3 = false
 var movement_attack2_4 = false
 var ATTACK_VELOCITY3 = 200
-var ATTACK_VELOCITY2_4 = 175
+var ATTACK_VELOCITY2_4 = 190
 
 @onready var timer1 : Timer = $Timer
 @onready var timer2 : Timer = $Timer2

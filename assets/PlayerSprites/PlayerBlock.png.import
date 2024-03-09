@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://uk8eclvmglhk"
-path="res://.godot/imported/PlayerCrouch.png-ebe2c4abe43ea81cbb2cb75631f746bd.ctex"
+uid="uid://c7hiahfjwc3fl"
+path="res://.godot/imported/PlayerBlock.png-2390f160bb7a8e7ec88767e9d17711f6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://textures/PlayerCrouch.png"
-dest_files=["res://.godot/imported/PlayerCrouch.png-ebe2c4abe43ea81cbb2cb75631f746bd.ctex"]
+source_file="res://assets/PlayerSprites/PlayerBlock.png"
+dest_files=["res://.godot/imported/PlayerBlock.png-2390f160bb7a8e7ec88767e9d17711f6.ctex"]
 
 [params]
 
@@ -31,4 +31,4 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=1
+detect_3d/compress_to=0

@@ -8,16 +8,16 @@ func _ready() -> void:
 		camera.offset.x = 35
 	elif (player.facing_left):
 		camera.offset.x = -35
-
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	if (player.facing_right):
 		camera.drag_left_margin = 0.4
 		camera.drag_right_margin = 0
 		if (camera.offset.x < 35):
-			camera.offset.x += 0.25
+			camera.offset.x += 2
 	else:
 		camera.drag_left_margin = 0
 		camera.drag_right_margin = 0.4
 		if (camera.offset.x > -35):
-			camera.offset.x -= 0.25
+			camera.offset.x -= 2

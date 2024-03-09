@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://miyqutrg6fb8"
-path="res://.godot/imported/PlayerAttack.png-bd4e8e12ed115fb089903836bb6f0756.ctex"
+uid="uid://daolruweyxgrc"
+path="res://.godot/imported/GrassTileSet.png-e7180d3bd021953e0cc6e88ac36ee6a5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://textures/PlayerAttack.png"
-dest_files=["res://.godot/imported/PlayerAttack.png-bd4e8e12ed115fb089903836bb6f0756.ctex"]
+source_file="res://assets/GrassTileSet.png"
+dest_files=["res://.godot/imported/GrassTileSet.png-e7180d3bd021953e0cc6e88ac36ee6a5.ctex"]
 
 [params]
 
@@ -31,4 +31,4 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=1
+detect_3d/compress_to=0

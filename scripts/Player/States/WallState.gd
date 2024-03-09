@@ -14,6 +14,7 @@ var hanging = true
 var timer_started = false
 
 func on_enter():
+	can_move = true
 	if (character.get_wall_normal().x == 1):
 		character.change_direction(true)
 	else:
@@ -30,6 +31,7 @@ func state_input(event: InputEvent):
 		
 	
 func state_process(delta):
+	character.velocity.x = character.direction.x * -200     
 	if (character.is_on_floor()):
 		land()
 	if (not character.is_on_wall()):
@@ -56,7 +58,10 @@ func jump():
 	character.velocity.y = character.JUMP_VELOCITY
 	air_state.jump_pressed = true;
 	air_state.from_wall = true;
+	air_state.can_move = false;
+	character.change_direction(character.direction.x);
 	playback.travel(jump_animation)
+	can_move = false
 	next_state = air_state
 
 func fall():

@@ -1,6 +1,6 @@
 extends State
 
-class_name AirState
+class_name EnemyAirState
 
 @export var landing_state : State
 @export var wall_state : State
@@ -18,6 +18,9 @@ var falling = false
 var from_wall = false
 var wall_jump_multiplier = 2
 
+func on_enter():
+	if (from_wall == true):
+		can_move = false
 
 func state_input(event: InputEvent):
 	if (character.velocity.y >= 0 and event.is_action_pressed("move_down")):
@@ -57,6 +60,7 @@ func on_exit():
 	fall_gravity = 0
 	falling = false
 	from_wall = false
+	can_move = true
 	if (next_state == landing_state):
 		playback.travel(landing_animation)
 	if (next_state == wall_state):

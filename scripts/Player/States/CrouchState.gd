@@ -12,6 +12,7 @@ class_name CrouchState
 @export var jump_sprite : Sprite2D
 @export var crouch_sprite : Sprite2D
 var is_attacking : bool = false
+var is_standing : bool = false
 var ATTACK_VELOCITY = 300
 
 
@@ -19,7 +20,10 @@ func state_process(delta):
 	if (!character.is_on_floor()):
 		is_attacking = false
 		next_state = air_state
-	if (is_attacking):
+	elif (is_standing && is_attacking == false):
+		stand()
+		is_standing = false
+	elif (is_attacking):
 		if (crouch_sprite.flip_h == false):
 			character.velocity.x = ATTACK_VELOCITY
 		else:
@@ -29,7 +33,7 @@ func state_process(delta):
 
 func state_input(event : InputEvent):
 	if (event.is_action_released("move_down")):
-		stand()
+		is_standing = true
 	if (event.is_action_pressed("jump")):
 		jump()
 	if (event.is_action_pressed("attack")):
@@ -51,9 +55,9 @@ func jump():
 	next_state = air_state
 
 func stand():
-	is_attacking = false
-	playback.travel(stand_animation)
-	next_state = stand_state
+	if (is_attacking == false):
+		playback.travel(stand_animation)
+		next_state = stand_state
 
 func _on_animation_tree_animation_finished(anim_name: StringName) -> void:
 	if (anim_name == "Crouch_Attack"):
