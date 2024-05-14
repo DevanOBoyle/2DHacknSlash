@@ -82,7 +82,8 @@ sources/0 = SubResource("TileSetAtlasSource_trg3f")
 position = Vector2(-4, 0)
 
 [node name="Background" type="Sprite2D" parent="."]
-position = Vector2(-1332, 71)
+visible = false
+position = Vector2(-314, -45)
 texture = ExtResource("1_an0np")
 
 [node name="Camera2D" type="Camera2D" parent="."]

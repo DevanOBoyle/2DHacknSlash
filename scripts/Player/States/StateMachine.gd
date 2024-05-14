@@ -26,7 +26,10 @@ func _physics_process(delta: float) -> void:
 	
 func check_if_can_move():
 	return current_state.can_move
-
+	
+func check_if_can_change_direction():
+	return current_state.can_change_direction
+	
 func switch_states(new_state : State):
 	if (current_state != null):
 		current_state.on_exit()

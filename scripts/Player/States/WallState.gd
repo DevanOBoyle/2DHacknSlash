@@ -1,5 +1,7 @@
 extends State
 
+class_name WallState
+
 @export var wall_hold_name = "WallHold"
 @export var wall_slide_name = "WallSlide"
 @export var jump_animation : String = "JumpAscend"
@@ -55,11 +57,12 @@ func _on_animation_tree_animation_finished(anim_name: StringName) -> void:
 		hanging = false
 	
 func jump():
+	timer.stop()
 	character.velocity.y = character.JUMP_VELOCITY
 	air_state.jump_pressed = true;
 	air_state.from_wall = true;
 	air_state.can_move = false;
-	character.change_direction(character.direction.x);
+	#character.change_direction(character.direction.x);
 	playback.travel(jump_animation)
 	can_move = false
 	next_state = air_state

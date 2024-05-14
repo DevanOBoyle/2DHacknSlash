@@ -11,13 +11,16 @@ class_name AttackState
 @export var attack3_name : String = "Attack3"
 @export var attack_up_name : String = "AttackUp"
 @export var ground_state : State
+@export var crouch_state : State
 @export var attack_sprite : Sprite2D
+@export var crouch_sprite : Sprite2D
+@export var crouch_animation : String = "Crouch"
 @export var move_animation : String = "Move"
 var next_attack : String = attack1_name
 var movement_attack3 = false
 var movement_attack2_4 = false
-var ATTACK_VELOCITY3 = 200
-var ATTACK_VELOCITY2_4 = 190
+@export var ATTACK_VELOCITY3 = 200
+@export var ATTACK_VELOCITY2_4 = 190
 
 @onready var timer1 : Timer = $Timer
 @onready var timer2 : Timer = $Timer2
@@ -43,8 +46,13 @@ func state_process(delta):
 func state_input(event : InputEvent):
 	if (event.is_action_pressed("attack")):
 		timer1.start()
-	
 
+func crouch():
+	character.hide_animations()
+	crouch_sprite.show()
+	playback.travel(crouch_animation)
+	next_state = crouch_state
+	
 func _on_animation_tree_animation_finished(anim_name: StringName) -> void:
 	if (anim_name == attack1_name):
 		if (timer1.is_stopped()):
@@ -87,5 +95,3 @@ func _on_animation_tree_animation_finished(anim_name: StringName) -> void:
 		playback.travel(move_animation)
 		movement_attack3 = false
 		movement_attack2_4 = false
-	
-		

@@ -16,6 +16,7 @@ var falling = false
 var sprites : Array[Sprite2D]
 var direction : Vector2 = Vector2.ZERO
 var facing_right : bool = false
+var knocked_up : bool = false
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -45,11 +46,10 @@ func _physics_process(delta: float) -> void:
 		rising_acceleration = RISING_ACCELERATION
 		fall_gravity = 0
 		
-
 	move_and_slide()
 	update_animation()
 	if ($EnemyStateMachine.check_if_can_move()):
 		update_facing_direction()
 	
 func update_animation():
-	$AnimationTree.set("parameters/Idle/blend_position", direction.x)
+	$AnimationTree.set("parameters/Ground/blend_position", direction.x)
