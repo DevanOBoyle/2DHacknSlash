@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dus5s8l45v6my"
-path="res://.godot/imported/PlayerBlock.png-2390f160bb7a8e7ec88767e9d17711f6.ctex"
+uid="uid://ddnnxuu5ov2n8"
+path="res://.godot/imported/PlayerCrouch.png-b4867d417f5be19b7be9a657edcd22bb.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/PlayerSprites/PlayerBlock.png"
-dest_files=["res://.godot/imported/PlayerBlock.png-2390f160bb7a8e7ec88767e9d17711f6.ctex"]
+source_file="res://assets/PlayerCrouch.png"
+dest_files=["res://.godot/imported/PlayerCrouch.png-b4867d417f5be19b7be9a657edcd22bb.ctex"]
 
 [params]
 

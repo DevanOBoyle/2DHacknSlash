@@ -29,10 +29,12 @@ settings/stdout/print_fps=true
 
 [display]
 
+window/size/viewport_width=640
+window/size/viewport_height=320
+window/size/mode=4
 window/stretch/mode="canvas_items"
-window/stretch/scale=0.8
+window/stretch/scale_mode="integer"
 window/per_pixel_transparency/allowed=true
-window/vsync/vsync_mode=2
 
 [editor_plugins]
 
@@ -115,6 +117,18 @@ guard={
 "events": [Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"button_index":2,"pressure":0.0,"pressed":false,"script":null)
 ]
 }
+grapple={
+"deadzone": 0.5,
+"events": [Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":-1,"axis":5,"axis_value":1.0,"script":null)
+]
+}
+
+[layer_names]
+
+2d_physics/layer_1="Player"
+2d_physics/layer_2="Enemies"
+2d_physics/layer_3="Environment"
+2d_physics/layer_4="PlayerHitBoxes"
 
 [rendering]
 

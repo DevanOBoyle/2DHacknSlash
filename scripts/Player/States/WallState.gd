@@ -9,7 +9,6 @@ class_name WallState
 @export var landing_animation : String = "Land"
 @export var landing_state : State
 @export var air_state : State
-@export var jump_sprite : Sprite2D
 @export var SLIDE_GRAVITY = 200
 @onready var timer : Timer = $Timer
 var hanging = true
@@ -28,7 +27,7 @@ func state_input(event: InputEvent):
 		hanging = false
 		SLIDE_GRAVITY = 300
 		character.velocity.y = SLIDE_GRAVITY
-	elif (event.is_action_pressed("jump")):
+	if (event.is_action_pressed("jump")):
 		jump()
 		
 	
@@ -62,7 +61,10 @@ func jump():
 	air_state.jump_pressed = true;
 	air_state.from_wall = true;
 	air_state.can_move = false;
-	#character.change_direction(character.direction.x);
+	if (character.get_wall_normal().x == 1):
+		character.change_direction(false)
+	else:
+		character.change_direction(true)
 	playback.travel(jump_animation)
 	can_move = false
 	next_state = air_state

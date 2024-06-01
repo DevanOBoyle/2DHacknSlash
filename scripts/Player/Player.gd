@@ -12,12 +12,15 @@ var fall_gravity = 0
 var jump_pressed = false
 var falling = false
 var sprites : Array[Sprite2D]
+var collisions : Array[CollisionShape2D]
 var direction : Vector2 = Vector2.ZERO
 var facing_right : bool = true
 var locked_on : bool = false
+@export var ray_length = 20
 
 @export var ground_state : State
 @export var aerial_state : State
+@export var grapple_state : State
 
 signal facing_direction_changed(facing_right : bool)
 
@@ -29,23 +32,33 @@ func _ready():
 	for child in get_children():
 		if (child is Sprite2D):
 			sprites.append(child)
+			print(sprites)
+		if (child is CollisionShape2D):
+			collisions.append(child)
 	hide_animations()
 	
 func hide_animations() -> void:
 	for sprite in sprites:
 		sprite.hide()
 
+func hide_collisions() -> void:
+	for collision in collisions:
+		collision.disabled = true
+
 func change_direction(direction : bool) -> void:
 	for sprite in sprites:
 		sprite.flip_h = direction
+	if (direction):
+		$RayCast2D.target_position.x = -ray_length
+	else:
+		$RayCast2D.target_position.x = ray_length
+	facing_right = !direction
 
 func update_facing_direction() -> void:
 	if (direction.x < 0):
 		change_direction(true)
-		facing_right = false
 	elif (direction.x > 0):
 		change_direction(false)
-		facing_right = true
 	emit_signal("facing_direction_changed", facing_right)
 
 func _input(event : InputEvent):
@@ -69,15 +82,13 @@ func _physics_process(delta: float) -> void:
 			velocity.x *= 0.5
 		if ($PlayerStateMachine.current_state == aerial_state):
 			velocity.x = direction.x * 120
-	else:
+	elif $PlayerStateMachine.current_state != grapple_state:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 
 	if (is_on_floor()): 
 		rising_acceleration = RISING_ACCELERATION
 		fall_gravity = 0
 		
-	#print(direction.x)
-	#print(direction.y)
 	move_and_slide()
 	update_animation()
 	if ($PlayerStateMachine.check_if_can_change_direction() and not locked_on):

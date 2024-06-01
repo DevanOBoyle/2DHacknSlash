@@ -1,11 +1,11 @@
-[gd_scene load_steps=209 format=3 uid="uid://b6iej1bmrskf3"]
+[gd_scene load_steps=184 format=3 uid="uid://b6iej1bmrskf3"]
 
 [ext_resource type="Script" path="res://scripts/Player/Player.gd" id="1_74715"]
-[ext_resource type="Texture2D" uid="uid://cte0ylxb11yku" path="res://assets/PlayerSprites/PlayerJump.png" id="4_bdhal"]
+[ext_resource type="Texture2D" uid="uid://dy4urm2kc3jc0" path="res://assets/PlayerSprites/PlayerJump.png" id="4_bdhal"]
 [ext_resource type="Script" path="res://scripts/Player/HitBox.gd" id="4_pep4p"]
-[ext_resource type="Texture2D" uid="uid://dylrewtcxpd3g" path="res://assets/PlayerSprites/PlayerAttack.png" id="5_t7o2b"]
+[ext_resource type="Texture2D" uid="uid://bxu255elf2fdb" path="res://assets/PlayerSprites/PlayerAttack.png" id="5_t7o2b"]
 [ext_resource type="Texture2D" uid="uid://uk8eclvmglhk" path="res://assets/PlayerSprites/PlayerCrouch.png" id="6_hfop5"]
-[ext_resource type="Texture2D" uid="uid://dus5s8l45v6my" path="res://assets/PlayerSprites/PlayerBlock.png" id="7_i8hef"]
+[ext_resource type="Texture2D" uid="uid://c7hiahfjwc3fl" path="res://assets/PlayerSprites/PlayerBlock.png" id="7_i8hef"]
 [ext_resource type="Script" path="res://scripts/Player/States/StateMachine.gd" id="8_dtmbx"]
 [ext_resource type="Script" path="res://scripts/Player/States/AerialState.gd" id="8_p65al"]
 [ext_resource type="Script" path="res://scripts/Player/States/GroundState.gd" id="9_losb5"]
@@ -16,11 +16,9 @@
 [ext_resource type="Script" path="res://scripts/Player/States/AttackState.gd" id="14_nfibw"]
 [ext_resource type="Script" path="res://scripts/Player/States/WallState.gd" id="15_6esxi"]
 [ext_resource type="Script" path="res://scripts/Player/GuardState.gd" id="16_2ya2d"]
-[ext_resource type="Script" path="res://scripts/Player/LedgeState.gd" id="16_4tgvr"]
 [ext_resource type="Script" path="res://scripts/Player/AnimationDebug.gd" id="16_p2jk1"]
 [ext_resource type="Script" path="res://scripts/Player/States/StateDebug.gd" id="16_spnnm"]
 [ext_resource type="Script" path="res://scripts/Player/FacingCollisionShape2D.gd" id="18_fygxn"]
-[ext_resource type="Script" path="res://scripts/Player/GrappleState.gd" id="18_pgvjl"]
 [ext_resource type="Script" path="res://scripts/Player/AttackCollisions/AttackArea.gd" id="19_53jxl"]
 [ext_resource type="Script" path="res://scripts/Player/AttackCollision.gd" id="19_i1om8"]
 
@@ -153,41 +151,6 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, false]
-}
-
-[sub_resource type="Animation" id="Animation_jaysd"]
-resource_name = "AerialDown"
-length = 0.2
-step = 0.02
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Attack:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.08, 0.14),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [98, 99, 100]
-}
-
-[sub_resource type="Animation" id="Animation_5tdh4"]
-resource_name = "AerialDownRepeat"
-length = 0.08
-loop_mode = 1
-step = 0.02
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Attack:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.02, 0.04, 0.06),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [101, 102, 103, 104]
 }
 
 [sub_resource type="Animation" id="Animation_uvsag"]
@@ -363,18 +326,6 @@ tracks/1/keys = {
 "update": 1,
 "values": [true, false]
 }
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("PlayerStateMachine/Attack:movement_attack2_4")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0.1, 0.23),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
-}
 
 [sub_resource type="Animation" id="Animation_6ok5k"]
 resource_name = "Attack3"
@@ -400,18 +351,6 @@ tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0.15, 0.22),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("PlayerStateMachine/Attack:movement_attack3")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0.09, 0.21),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, false]
@@ -529,7 +468,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.06, 0.12, 0.28, 0.34),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 1,
-"values": [8, 9, 10, 9, 8]
+"values": [3, 8, 9, 8, 3]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -573,10 +512,10 @@ tracks/0/path = NodePath("Crouch:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.24, 0.52, 0.76, 1.04),
+"times": PackedFloat32Array(0, 0.2, 0.48, 0.72, 0.96),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 1,
-"values": [4, 5, 6, 7, 8]
+"values": [3, 4, 5, 6, 7]
 }
 
 [sub_resource type="Animation" id="Animation_kr13n"]
@@ -608,7 +547,7 @@ tracks/0/path = NodePath("Jump:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.06, 0.14, 0.22),
+"times": PackedFloat32Array(0, 0.06, 0.12, 0.2),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
 "values": [2, 3, 4, 5]
@@ -646,53 +585,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [10, 11, 12]
-}
-
-[sub_resource type="Animation" id="Animation_c2dq5"]
-resource_name = "LedgeHold"
-length = 1.4
-loop_mode = 1
-step = 0.02
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Jump:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.22, 0.5, 0.78, 1.14),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 1,
-"values": [15, 15, 16, 17, 18]
-}
-
-[sub_resource type="Animation" id="Animation_exvxl"]
-resource_name = "Lunge"
-length = 0.84
-step = 0.04
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Attack:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.04, 0.08, 0.16, 0.24, 0.32, 0.4, 0.52, 0.68, 0.76),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [62, 63, 64, 65, 66, 67, 68, 69, 70, 71]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("PlayerStateMachine/Attack:movement_lunge")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.2, 0.28),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
 }
 
 [sub_resource type="Animation" id="Animation_j8ccl"]
@@ -805,8 +697,6 @@ _data = {
 "Aerial1-2": SubResource("Animation_t32xe"),
 "Aerial2": SubResource("Animation_u4ay6"),
 "Aerial3": SubResource("Animation_wyubf"),
-"AerialDown": SubResource("Animation_jaysd"),
-"AerialDownRepeat": SubResource("Animation_5tdh4"),
 "Attack1": SubResource("Animation_uvsag"),
 "Attack1-2": SubResource("Animation_i7nlb"),
 "Attack2": SubResource("Animation_1t84s"),
@@ -826,8 +716,6 @@ _data = {
 "JumpAscend": SubResource("Animation_rj5sr"),
 "JumpDescend": SubResource("Animation_tfwti"),
 "Land": SubResource("Animation_m23go"),
-"LedgeHold": SubResource("Animation_c2dq5"),
-"Lunge": SubResource("Animation_exvxl"),
 "Parry": SubResource("Animation_j8ccl"),
 "ReverseWalk": SubResource("Animation_wgw5t"),
 "Run": SubResource("Animation_uf868"),
@@ -836,20 +724,8 @@ _data = {
 "WallSlide": SubResource("Animation_d2ipe")
 }
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_s5tfb"]
-size = Vector2(11, 24)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_85ixb"]
-size = Vector2(15, 25)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_f7di1"]
-size = Vector2(15, 1.75)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_5r30w"]
-size = Vector2(16, 16)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qc8ln"]
-size = Vector2(16.5, 25)
+size = Vector2(18, 25)
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_2l1gf"]
 animation = &"Aerial1-2"
@@ -862,12 +738,6 @@ animation = &"Aerial2"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_mvy0o"]
 animation = &"Aerial3"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_5rgct"]
-animation = &"AerialDown"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_1p56h"]
-animation = &"AerialDownRepeat"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_yqjk7"]
 animation = &"Attack1-2"
@@ -922,12 +792,6 @@ animation = &"JumpDescend"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_tc0r2"]
 animation = &"Land"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_fb5ci"]
-animation = &"LedgeHold"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_tw186"]
-animation = &"Lunge"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_fnhdd"]
 animation = &"Run"
@@ -1185,43 +1049,15 @@ advance_mode = 2
 switch_mode = 2
 advance_mode = 2
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_r8skh"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_j46wj"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_8oheu"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ns2h0"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ymk73"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_dnc6f"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_yc0jn"]
-switch_mode = 2
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_m8tjv"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_8g8vr"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_lqglq"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_n26bk"]
-
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_n7xtn"]
 states/Aerial1/node = SubResource("AnimationNodeAnimation_vb5t5")
-states/Aerial1/position = Vector2(814.35, -138.6)
+states/Aerial1/position = Vector2(805.35, -138.6)
 states/Aerial1-2/node = SubResource("AnimationNodeAnimation_2l1gf")
 states/Aerial1-2/position = Vector2(907.35, -52.756)
 states/Aerial2/node = SubResource("AnimationNodeAnimation_73fn2")
 states/Aerial2/position = Vector2(974.52, -138.6)
 states/Aerial3/node = SubResource("AnimationNodeAnimation_mvy0o")
 states/Aerial3/position = Vector2(1118, -138.6)
-states/AerialDown/node = SubResource("AnimationNodeAnimation_5rgct")
-states/AerialDown/position = Vector2(940.346, 419.4)
-states/AerialDownRepeat/node = SubResource("AnimationNodeAnimation_1p56h")
-states/AerialDownRepeat/position = Vector2(1162.35, 419.4)
 states/Attack1/node = SubResource("AnimationNodeAnimation_w8tw8")
 states/Attack1/position = Vector2(864, 117.782)
 states/Attack1-2/node = SubResource("AnimationNodeAnimation_yqjk7")
@@ -1258,13 +1094,9 @@ states/JumpAscend/position = Vector2(443.263, -35)
 states/JumpDescend/node = SubResource("AnimationNodeAnimation_gkmqb")
 states/JumpDescend/position = Vector2(634, -35)
 states/Land/node = SubResource("AnimationNodeAnimation_tc0r2")
-states/Land/position = Vector2(443.263, 57)
-states/LedgeHold/node = SubResource("AnimationNodeAnimation_fb5ci")
-states/LedgeHold/position = Vector2(1402.35, 41.899)
-states/Lunge/node = SubResource("AnimationNodeAnimation_tw186")
-states/Lunge/position = Vector2(864, 324.4)
+states/Land/position = Vector2(438, 68)
 states/Move/node = SubResource("AnimationNodeBlendSpace1D_4d50p")
-states/Move/position = Vector2(244.346, 117.782)
+states/Move/position = Vector2(255.346, 117.782)
 states/Start/position = Vector2(60.346, 117.782)
 states/WalkLeft/node = SubResource("AnimationNodeBlendSpace1D_fup8l")
 states/WalkLeft/position = Vector2(184.346, -138.6)
@@ -1273,8 +1105,8 @@ states/WalkRight/position = Vector2(16.346, -138.6)
 states/WallHold/node = SubResource("AnimationNodeAnimation_a3p26")
 states/WallHold/position = Vector2(443.263, -138.6)
 states/WallSlide/node = SubResource("AnimationNodeAnimation_yn1kv")
-states/WallSlide/position = Vector2(634, -138.6)
-transitions = ["JumpAscend", "JumpDescend", SubResource("AnimationNodeStateMachineTransition_uk4mx"), "JumpDescend", "Land", SubResource("AnimationNodeStateMachineTransition_2hnk0"), "Land", "JumpAscend", SubResource("AnimationNodeStateMachineTransition_rnigy"), "Attack1", "Attack2", SubResource("AnimationNodeStateMachineTransition_vx0pb"), "Attack2", "Attack3", SubResource("AnimationNodeStateMachineTransition_jo1om"), "Attack1", "Attack1-2", SubResource("AnimationNodeStateMachineTransition_mgihx"), "Attack2", "Attack2-2", SubResource("AnimationNodeStateMachineTransition_jg41e"), "Attack2-2", "Attack2-3", SubResource("AnimationNodeStateMachineTransition_bvf13"), "Attack2-3", "Attack2-4", SubResource("AnimationNodeStateMachineTransition_cydy5"), "Crouch", "Crouch_Idle", SubResource("AnimationNodeStateMachineTransition_v6vpw"), "Crouch_Idle", "Crouch_Attack", SubResource("AnimationNodeStateMachineTransition_hllu8"), "Crouch_Attack", "Crouch_Idle", SubResource("AnimationNodeStateMachineTransition_tsmck"), "Crouch_Idle", "Crouch_End", SubResource("AnimationNodeStateMachineTransition_rtrmx"), "Crouch_Attack", "Crouch_End", SubResource("AnimationNodeStateMachineTransition_tif0f"), "Crouch_End", "JumpAscend", SubResource("AnimationNodeStateMachineTransition_hiq2t"), "Crouch_Attack", "JumpDescend", SubResource("AnimationNodeStateMachineTransition_oo1pq"), "Crouch_Idle", "JumpDescend", SubResource("AnimationNodeStateMachineTransition_pmhu4"), "JumpAscend", "WallHold", SubResource("AnimationNodeStateMachineTransition_uxqwe"), "JumpDescend", "WallHold", SubResource("AnimationNodeStateMachineTransition_4h7dd"), "WallHold", "WallSlide", SubResource("AnimationNodeStateMachineTransition_i76cj"), "WallHold", "JumpAscend", SubResource("AnimationNodeStateMachineTransition_jglvy"), "WallSlide", "JumpAscend", SubResource("AnimationNodeStateMachineTransition_4tsj4"), "WallHold", "JumpDescend", SubResource("AnimationNodeStateMachineTransition_jr04a"), "WallSlide", "JumpDescend", SubResource("AnimationNodeStateMachineTransition_qmu22"), "WallSlide", "Land", SubResource("AnimationNodeStateMachineTransition_dhi1w"), "JumpDescend", "JumpAscend", SubResource("AnimationNodeStateMachineTransition_6vurb"), "Crouch", "Crouch_End", SubResource("AnimationNodeStateMachineTransition_hdu3p"), "Aerial1", "Aerial1-2", SubResource("AnimationNodeStateMachineTransition_c782g"), "Aerial1-2", "Aerial2", SubResource("AnimationNodeStateMachineTransition_x8kbj"), "Aerial2", "Aerial3", SubResource("AnimationNodeStateMachineTransition_tugfu"), "Aerial1", "Aerial2", SubResource("AnimationNodeStateMachineTransition_cmcc0"), "JumpAscend", "Aerial1", SubResource("AnimationNodeStateMachineTransition_x7x7e"), "JumpDescend", "Aerial1", SubResource("AnimationNodeStateMachineTransition_pjb8t"), "Aerial1", "JumpDescend", SubResource("AnimationNodeStateMachineTransition_okq2r"), "Aerial1", "WallHold", SubResource("AnimationNodeStateMachineTransition_r432l"), "Aerial1-2", "WallHold", SubResource("AnimationNodeStateMachineTransition_72gym"), "Aerial3", "WallHold", SubResource("AnimationNodeStateMachineTransition_kpb77"), "Aerial2", "WallHold", SubResource("AnimationNodeStateMachineTransition_offhl"), "Aerial1-2", "JumpDescend", SubResource("AnimationNodeStateMachineTransition_khtvr"), "Aerial2", "JumpDescend", SubResource("AnimationNodeStateMachineTransition_ioqh2"), "Aerial3", "JumpDescend", SubResource("AnimationNodeStateMachineTransition_r6bbm"), "Aerial1", "Land", SubResource("AnimationNodeStateMachineTransition_htnvv"), "Aerial1-2", "Land", SubResource("AnimationNodeStateMachineTransition_6ta4b"), "Aerial2", "Land", SubResource("AnimationNodeStateMachineTransition_ofmdp"), "Aerial3", "Land", SubResource("AnimationNodeStateMachineTransition_r84vq"), "JumpDescend", "Aerial1-2", SubResource("AnimationNodeStateMachineTransition_rjruj"), "JumpAscend", "Aerial1-2", SubResource("AnimationNodeStateMachineTransition_oxkhr"), "Move", "WalkRight", SubResource("AnimationNodeStateMachineTransition_ukw3h"), "WalkRight", "Move", SubResource("AnimationNodeStateMachineTransition_lj1ln"), "Move", "WalkLeft", SubResource("AnimationNodeStateMachineTransition_8bb1p"), "WalkLeft", "Move", SubResource("AnimationNodeStateMachineTransition_8daqi"), "Move", "Attack1", SubResource("AnimationNodeStateMachineTransition_4hi0o"), "Attack1", "Move", SubResource("AnimationNodeStateMachineTransition_xj1v1"), "Attack2", "Move", SubResource("AnimationNodeStateMachineTransition_op4bu"), "Attack3", "Move", SubResource("AnimationNodeStateMachineTransition_m2mx3"), "Attack1-2", "Move", SubResource("AnimationNodeStateMachineTransition_by4ho"), "Attack2-2", "Move", SubResource("AnimationNodeStateMachineTransition_kk7ik"), "Attack2-3", "Move", SubResource("AnimationNodeStateMachineTransition_6s20b"), "Attack2-4", "Move", SubResource("AnimationNodeStateMachineTransition_6ldlx"), "Move", "Crouch", SubResource("AnimationNodeStateMachineTransition_pe7r4"), "Crouch_End", "Move", SubResource("AnimationNodeStateMachineTransition_xdvcf"), "Move", "AttackUp", SubResource("AnimationNodeStateMachineTransition_6mehf"), "AttackUp", "Move", SubResource("AnimationNodeStateMachineTransition_k2ex5"), "Land", "Move", SubResource("AnimationNodeStateMachineTransition_j16b0"), "Move", "JumpAscend", SubResource("AnimationNodeStateMachineTransition_r1t6y"), "Move", "JumpDescend", SubResource("AnimationNodeStateMachineTransition_3di0w"), "Start", "Move", SubResource("AnimationNodeStateMachineTransition_m8pv7"), "Move", "BlockStart", SubResource("AnimationNodeStateMachineTransition_qysnm"), "BlockStart", "BlockIdle", SubResource("AnimationNodeStateMachineTransition_se8e6"), "BlockIdle", "BlockEnd", SubResource("AnimationNodeStateMachineTransition_eplkk"), "BlockEnd", "Move", SubResource("AnimationNodeStateMachineTransition_yqupv"), "Move", "Lunge", SubResource("AnimationNodeStateMachineTransition_r8skh"), "Lunge", "Move", SubResource("AnimationNodeStateMachineTransition_j46wj"), "JumpAscend", "LedgeHold", SubResource("AnimationNodeStateMachineTransition_8oheu"), "LedgeHold", "JumpAscend", SubResource("AnimationNodeStateMachineTransition_ns2h0"), "JumpDescend", "LedgeHold", SubResource("AnimationNodeStateMachineTransition_ymk73"), "LedgeHold", "JumpDescend", SubResource("AnimationNodeStateMachineTransition_dnc6f"), "AerialDown", "AerialDownRepeat", SubResource("AnimationNodeStateMachineTransition_yc0jn"), "JumpAscend", "AerialDown", SubResource("AnimationNodeStateMachineTransition_m8tjv"), "JumpDescend", "AerialDown", SubResource("AnimationNodeStateMachineTransition_8g8vr"), "AerialDownRepeat", "Land", SubResource("AnimationNodeStateMachineTransition_lqglq"), "AerialDown", "Land", SubResource("AnimationNodeStateMachineTransition_n26bk")]
+states/WallSlide/position = Vector2(627.263, -133.438)
+transitions = ["JumpAscend", "JumpDescend", SubResource("AnimationNodeStateMachineTransition_uk4mx"), "JumpDescend", "Land", SubResource("AnimationNodeStateMachineTransition_2hnk0"), "Land", "JumpAscend", SubResource("AnimationNodeStateMachineTransition_rnigy"), "Attack1", "Attack2", SubResource("AnimationNodeStateMachineTransition_vx0pb"), "Attack2", "Attack3", SubResource("AnimationNodeStateMachineTransition_jo1om"), "Attack1", "Attack1-2", SubResource("AnimationNodeStateMachineTransition_mgihx"), "Attack2", "Attack2-2", SubResource("AnimationNodeStateMachineTransition_jg41e"), "Attack2-2", "Attack2-3", SubResource("AnimationNodeStateMachineTransition_bvf13"), "Attack2-3", "Attack2-4", SubResource("AnimationNodeStateMachineTransition_cydy5"), "Crouch", "Crouch_Idle", SubResource("AnimationNodeStateMachineTransition_v6vpw"), "Crouch_Idle", "Crouch_Attack", SubResource("AnimationNodeStateMachineTransition_hllu8"), "Crouch_Attack", "Crouch_Idle", SubResource("AnimationNodeStateMachineTransition_tsmck"), "Crouch_Idle", "Crouch_End", SubResource("AnimationNodeStateMachineTransition_rtrmx"), "Crouch_Attack", "Crouch_End", SubResource("AnimationNodeStateMachineTransition_tif0f"), "Crouch_End", "JumpAscend", SubResource("AnimationNodeStateMachineTransition_hiq2t"), "Crouch_Attack", "JumpDescend", SubResource("AnimationNodeStateMachineTransition_oo1pq"), "Crouch_Idle", "JumpDescend", SubResource("AnimationNodeStateMachineTransition_pmhu4"), "JumpAscend", "WallHold", SubResource("AnimationNodeStateMachineTransition_uxqwe"), "JumpDescend", "WallHold", SubResource("AnimationNodeStateMachineTransition_4h7dd"), "WallHold", "WallSlide", SubResource("AnimationNodeStateMachineTransition_i76cj"), "WallHold", "JumpAscend", SubResource("AnimationNodeStateMachineTransition_jglvy"), "WallSlide", "JumpAscend", SubResource("AnimationNodeStateMachineTransition_4tsj4"), "WallHold", "JumpDescend", SubResource("AnimationNodeStateMachineTransition_jr04a"), "WallSlide", "JumpDescend", SubResource("AnimationNodeStateMachineTransition_qmu22"), "WallSlide", "Land", SubResource("AnimationNodeStateMachineTransition_dhi1w"), "JumpDescend", "JumpAscend", SubResource("AnimationNodeStateMachineTransition_6vurb"), "Crouch", "Crouch_End", SubResource("AnimationNodeStateMachineTransition_hdu3p"), "Aerial1", "Aerial1-2", SubResource("AnimationNodeStateMachineTransition_c782g"), "Aerial1-2", "Aerial2", SubResource("AnimationNodeStateMachineTransition_x8kbj"), "Aerial2", "Aerial3", SubResource("AnimationNodeStateMachineTransition_tugfu"), "Aerial1", "Aerial2", SubResource("AnimationNodeStateMachineTransition_cmcc0"), "JumpAscend", "Aerial1", SubResource("AnimationNodeStateMachineTransition_x7x7e"), "JumpDescend", "Aerial1", SubResource("AnimationNodeStateMachineTransition_pjb8t"), "Aerial1", "JumpDescend", SubResource("AnimationNodeStateMachineTransition_okq2r"), "Aerial1", "WallHold", SubResource("AnimationNodeStateMachineTransition_r432l"), "Aerial1-2", "WallHold", SubResource("AnimationNodeStateMachineTransition_72gym"), "Aerial3", "WallHold", SubResource("AnimationNodeStateMachineTransition_kpb77"), "Aerial2", "WallHold", SubResource("AnimationNodeStateMachineTransition_offhl"), "Aerial1-2", "JumpDescend", SubResource("AnimationNodeStateMachineTransition_khtvr"), "Aerial2", "JumpDescend", SubResource("AnimationNodeStateMachineTransition_ioqh2"), "Aerial3", "JumpDescend", SubResource("AnimationNodeStateMachineTransition_r6bbm"), "Aerial1", "Land", SubResource("AnimationNodeStateMachineTransition_htnvv"), "Aerial1-2", "Land", SubResource("AnimationNodeStateMachineTransition_6ta4b"), "Aerial2", "Land", SubResource("AnimationNodeStateMachineTransition_ofmdp"), "Aerial3", "Land", SubResource("AnimationNodeStateMachineTransition_r84vq"), "JumpDescend", "Aerial1-2", SubResource("AnimationNodeStateMachineTransition_rjruj"), "JumpAscend", "Aerial1-2", SubResource("AnimationNodeStateMachineTransition_oxkhr"), "Move", "WalkRight", SubResource("AnimationNodeStateMachineTransition_ukw3h"), "WalkRight", "Move", SubResource("AnimationNodeStateMachineTransition_lj1ln"), "Move", "WalkLeft", SubResource("AnimationNodeStateMachineTransition_8bb1p"), "WalkLeft", "Move", SubResource("AnimationNodeStateMachineTransition_8daqi"), "Move", "Attack1", SubResource("AnimationNodeStateMachineTransition_4hi0o"), "Attack1", "Move", SubResource("AnimationNodeStateMachineTransition_xj1v1"), "Attack2", "Move", SubResource("AnimationNodeStateMachineTransition_op4bu"), "Attack3", "Move", SubResource("AnimationNodeStateMachineTransition_m2mx3"), "Attack1-2", "Move", SubResource("AnimationNodeStateMachineTransition_by4ho"), "Attack2-2", "Move", SubResource("AnimationNodeStateMachineTransition_kk7ik"), "Attack2-3", "Move", SubResource("AnimationNodeStateMachineTransition_6s20b"), "Attack2-4", "Move", SubResource("AnimationNodeStateMachineTransition_6ldlx"), "Move", "Crouch", SubResource("AnimationNodeStateMachineTransition_pe7r4"), "Crouch_End", "Move", SubResource("AnimationNodeStateMachineTransition_xdvcf"), "Move", "AttackUp", SubResource("AnimationNodeStateMachineTransition_6mehf"), "AttackUp", "Move", SubResource("AnimationNodeStateMachineTransition_k2ex5"), "Land", "Move", SubResource("AnimationNodeStateMachineTransition_j16b0"), "Move", "JumpAscend", SubResource("AnimationNodeStateMachineTransition_r1t6y"), "Move", "JumpDescend", SubResource("AnimationNodeStateMachineTransition_3di0w"), "Start", "Move", SubResource("AnimationNodeStateMachineTransition_m8pv7"), "Move", "BlockStart", SubResource("AnimationNodeStateMachineTransition_qysnm"), "BlockStart", "BlockIdle", SubResource("AnimationNodeStateMachineTransition_se8e6"), "BlockIdle", "BlockEnd", SubResource("AnimationNodeStateMachineTransition_eplkk"), "BlockEnd", "Move", SubResource("AnimationNodeStateMachineTransition_yqupv")]
 graph_offset = Vector2(-124.654, -220.6)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iauvi"]
@@ -1319,17 +1151,10 @@ size = Vector2(25, 50.5)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cvhb6"]
 size = Vector2(16, 6)
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("ground_state", "aerial_state", "grapple_state") groups=["Player"]]
-collision_mask = 4
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("ground_state", "aerial_state")]
 script = ExtResource("1_74715")
 ground_state = NodePath("PlayerStateMachine/Ground")
 aerial_state = NodePath("PlayerStateMachine/Aerial")
-grapple_state = NodePath("PlayerStateMachine/Grapple")
-
-[node name="RayCast2D" type="RayCast2D" parent="."]
-position = Vector2(0, -14)
-target_position = Vector2(20, 0)
-collision_mask = 4
 
 [node name="Idle" type="Sprite2D" parent="."]
 visible = false
@@ -1337,82 +1162,46 @@ position = Vector2(-33, -32)
 texture = SubResource("CompressedTexture2D_utple")
 centered = false
 hframes = 29
-frame = 8
+frame = 10
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_a852d")
 }
 
-[node name="WallCollision" type="CollisionShape2D" parent="." node_paths=PackedStringArray("player")]
-position = Vector2(-0.5, 0)
-shape = SubResource("RectangleShape2D_s5tfb")
-script = ExtResource("4_pep4p")
-player = NodePath("..")
-facing_left_position = Vector2(0.5, 0)
-facing_right_position = Vector2(-0.5, 0)
-
-[node name="AirCollision" type="CollisionShape2D" parent="." node_paths=PackedStringArray("player")]
-visible = false
-position = Vector2(2, 2)
-shape = SubResource("RectangleShape2D_85ixb")
-script = ExtResource("4_pep4p")
-player = NodePath("..")
-facing_left_position = Vector2(1, 2)
-facing_right_position = Vector2(2, 2)
-
-[node name="LedgeCollision" type="CollisionShape2D" parent="." node_paths=PackedStringArray("player")]
-position = Vector2(1, -4)
-shape = SubResource("RectangleShape2D_f7di1")
-script = ExtResource("4_pep4p")
-player = NodePath("..")
-facing_left_position = Vector2(0, -5)
-facing_right_position = Vector2(2, -5)
-
-[node name="CrouchCollision" type="CollisionShape2D" parent="." node_paths=PackedStringArray("player")]
-visible = false
-position = Vector2(4, 7)
-shape = SubResource("RectangleShape2D_5r30w")
-script = ExtResource("4_pep4p")
-player = NodePath("..")
-facing_left_position = Vector2(-2, 7)
-facing_right_position = Vector2(4, 7)
-
-[node name="GroundCollision" type="CollisionShape2D" parent="." node_paths=PackedStringArray("player")]
-visible = false
-position = Vector2(2, 2)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." node_paths=PackedStringArray("player")]
+position = Vector2(3, 2)
 shape = SubResource("RectangleShape2D_qc8ln")
 script = ExtResource("4_pep4p")
 player = NodePath("..")
-facing_left_position = Vector2(-3.5, 2.5)
+facing_left_position = Vector2(-2.5, 2.5)
 facing_right_position = Vector2(2.5, 2.5)
 
 [node name="Jump" type="Sprite2D" parent="."]
+visible = false
 texture_filter = 1
 texture = ExtResource("4_bdhal")
-hframes = 19
-frame = 15
+hframes = 28
+frame = 14
 
 [node name="Attack" type="Sprite2D" parent="."]
-visible = false
 position = Vector2(-1, 0)
 texture = ExtResource("5_t7o2b")
 hframes = 105
-frame = 72
+frame = 81
 
 [node name="Crouch" type="Sprite2D" parent="."]
 visible = false
-position = Vector2(-1, 0)
 texture = ExtResource("6_hfop5")
-hframes = 11
-frame = 3
+hframes = 10
+frame = 8
 
 [node name="Block" type="Sprite2D" parent="."]
 visible = false
-position = Vector2(-1, 0)
+position = Vector2(0, 1)
 texture = ExtResource("7_i8hef")
-hframes = 26
-frame = 3
+hframes = 25
+frame = 1
 
 [node name="PlayerStateMachine" type="Node" parent="." node_paths=PackedStringArray("character", "animation_tree", "current_state")]
 script = ExtResource("8_dtmbx")
@@ -1420,7 +1209,7 @@ character = NodePath("..")
 animation_tree = NodePath("../AnimationTree")
 current_state = NodePath("Ground")
 
-[node name="Ground" type="Node" parent="PlayerStateMachine" node_paths=PackedStringArray("air_state", "crouch_state", "attack_state", "guard_state", "idle_sprite", "jump_sprite", "attack_sprite", "crouch_sprite", "guard_sprite", "ground_collision")]
+[node name="Ground" type="Node" parent="PlayerStateMachine" node_paths=PackedStringArray("air_state", "crouch_state", "attack_state", "guard_state", "idle_sprite", "jump_sprite", "attack_sprite", "crouch_sprite", "guard_sprite")]
 script = ExtResource("9_losb5")
 air_state = NodePath("../Air")
 crouch_state = NodePath("../Crouch")
@@ -1431,7 +1220,6 @@ jump_sprite = NodePath("../../Jump")
 attack_sprite = NodePath("../../Attack")
 crouch_sprite = NodePath("../../Crouch")
 guard_sprite = NodePath("../../Block")
-ground_collision = NodePath("../../GroundCollision")
 
 [node name="Timer" type="Timer" parent="PlayerStateMachine/Ground"]
 wait_time = 0.05
@@ -1455,18 +1243,22 @@ one_shot = true
 wait_time = 0.5
 one_shot = true
 
-[node name="Air" type="Node" parent="PlayerStateMachine" node_paths=PackedStringArray("landing_state", "wall_state", "ledge_state", "aerial_state", "grapple_state", "jump_sprite", "attack_sprite", "air_collision", "raycast")]
+[node name="Air" type="Node" parent="PlayerStateMachine" node_paths=PackedStringArray("landing_state", "wall_state", "aerial_state", "jump_sprite", "attack_sprite")]
 script = ExtResource("10_2kuec")
 landing_state = NodePath("../Landing")
 wall_state = NodePath("../Wall")
-ledge_state = NodePath("../Ledge")
 aerial_state = NodePath("../Aerial")
-grapple_state = NodePath("../Grapple")
 jump_sprite = NodePath("../../Jump")
 attack_sprite = NodePath("../../Attack")
-air_collision = NodePath("../../AirCollision")
-raycast = NodePath("../../RayCast2D")
 can_change_direction = false
+
+[node name="Timer" type="Timer" parent="PlayerStateMachine/Air"]
+wait_time = 0.635
+one_shot = true
+
+[node name="Timer2" type="Timer" parent="PlayerStateMachine/Air"]
+wait_time = 0.5
+one_shot = true
 
 [node name="Landing" type="Node" parent="PlayerStateMachine" node_paths=PackedStringArray("ground_state", "air_state", "idle_sprite", "run_sprite", "jump_sprite")]
 script = ExtResource("11_yibrp")
@@ -1476,7 +1268,7 @@ idle_sprite = NodePath("../../Idle")
 run_sprite = NodePath("../../Idle")
 jump_sprite = NodePath("../../Jump")
 
-[node name="Crouch" type="Node" parent="PlayerStateMachine" node_paths=PackedStringArray("air_state", "crouch_state", "attack_state", "stand_state", "jump_sprite", "crouch_sprite", "crouch_collision")]
+[node name="Crouch" type="Node" parent="PlayerStateMachine" node_paths=PackedStringArray("air_state", "crouch_state", "attack_state", "stand_state", "jump_sprite", "crouch_sprite")]
 script = ExtResource("12_qb6r7")
 air_state = NodePath("../Air")
 crouch_state = NodePath(".")
@@ -1484,7 +1276,6 @@ attack_state = NodePath("../Attack")
 stand_state = NodePath("../Stand")
 jump_sprite = NodePath("../../Jump")
 crouch_sprite = NodePath("../../Crouch")
-crouch_collision = NodePath("../../CrouchCollision")
 can_move = false
 can_change_direction = false
 
@@ -1529,30 +1320,17 @@ idle_sprite = NodePath("../../Idle")
 can_move = false
 can_change_direction = false
 
-[node name="Ledge" type="Node" parent="PlayerStateMachine" node_paths=PackedStringArray("landing_state", "air_state")]
-script = ExtResource("16_4tgvr")
-landing_state = NodePath("../Landing")
-air_state = NodePath("../Air")
-can_move = false
-can_change_direction = false
-
-[node name="Wall" type="Node" parent="PlayerStateMachine" node_paths=PackedStringArray("landing_state", "air_state")]
+[node name="Wall" type="Node" parent="PlayerStateMachine" node_paths=PackedStringArray("landing_state", "air_state", "jump_sprite")]
 script = ExtResource("15_6esxi")
 landing_state = NodePath("../Landing")
 air_state = NodePath("../Air")
+jump_sprite = NodePath("../../Jump")
 can_change_direction = false
 
 [node name="Timer" type="Timer" parent="PlayerStateMachine/Wall"]
 process_callback = 0
 wait_time = 0.05
 one_shot = true
-
-[node name="Grapple" type="Node" parent="PlayerStateMachine" node_paths=PackedStringArray("air_state", "landing_state")]
-script = ExtResource("18_pgvjl")
-air_state = NodePath("../Air")
-landing_state = NodePath("../Landing")
-can_move = false
-can_change_direction = false
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 libraries = {
@@ -1581,11 +1359,13 @@ script = ExtResource("16_spnnm")
 state_machine = NodePath("../PlayerStateMachine")
 
 [node name="Attack1" type="Area2D" parent="." node_paths=PackedStringArray("player", "facing_shape")]
-collision_layer = 8
-collision_mask = 2
+visible = false
+monitoring = false
 script = ExtResource("19_53jxl")
+damage = null
 player = NodePath("..")
 facing_shape = NodePath("CollisionShape2D")
+is_knockup = null
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Attack1"]
 visible = false
@@ -1596,8 +1376,6 @@ facing_left_position = Vector2(-26, 0)
 facing_right_position = Vector2(26, 0)
 
 [node name="Attack1_2" type="Area2D" parent="." node_paths=PackedStringArray("player", "facing_shape")]
-collision_layer = 8
-collision_mask = 2
 monitoring = false
 script = ExtResource("19_i1om8")
 damage = 20
@@ -1613,9 +1391,6 @@ facing_left_position = Vector2(-31.5, -3.5)
 facing_right_position = Vector2(31.5, -3.5)
 
 [node name="Attack2" type="Area2D" parent="." node_paths=PackedStringArray("player", "facing_shape")]
-collision_layer = 8
-collision_mask = 2
-monitoring = false
 script = ExtResource("19_i1om8")
 player = NodePath("..")
 facing_shape = NodePath("CollisionShape2D")
@@ -1629,8 +1404,6 @@ facing_left_position = Vector2(-26.5, 1.5)
 facing_right_position = Vector2(26.5, 1.5)
 
 [node name="Attack2_2" type="Area2D" parent="." node_paths=PackedStringArray("player", "facing_shape")]
-collision_layer = 8
-collision_mask = 2
 monitoring = false
 script = ExtResource("19_i1om8")
 player = NodePath("..")
@@ -1645,8 +1418,6 @@ facing_left_position = Vector2(-29.5, 2)
 facing_right_position = Vector2(29.5, 2)
 
 [node name="Attack2_3" type="Area2D" parent="." node_paths=PackedStringArray("player", "facing_shape")]
-collision_layer = 8
-collision_mask = 2
 monitoring = false
 script = ExtResource("19_i1om8")
 player = NodePath("..")
@@ -1661,8 +1432,7 @@ facing_left_position = Vector2(-29.5, 1)
 facing_right_position = Vector2(29.5, 1)
 
 [node name="Attack2_4" type="Area2D" parent="." node_paths=PackedStringArray("player", "facing_shape")]
-collision_layer = 8
-collision_mask = 2
+monitoring = false
 script = ExtResource("19_i1om8")
 damage = 20
 player = NodePath("..")
@@ -1677,8 +1447,7 @@ facing_left_position = Vector2(-26, -1)
 facing_right_position = Vector2(26, -1)
 
 [node name="Attack3" type="Area2D" parent="." node_paths=PackedStringArray("player", "facing_shape")]
-collision_layer = 8
-collision_mask = 2
+monitoring = false
 script = ExtResource("19_i1om8")
 damage = 15
 player = NodePath("..")
@@ -1693,8 +1462,6 @@ facing_left_position = Vector2(-30.75, 2.5)
 facing_right_position = Vector2(30.75, 2.5)
 
 [node name="AttackUp" type="Area2D" parent="." node_paths=PackedStringArray("player", "facing_shape")]
-collision_layer = 8
-collision_mask = 2
 monitoring = false
 script = ExtResource("19_i1om8")
 damage = 15
@@ -1711,8 +1478,6 @@ facing_left_position = Vector2(-28.5, 0.5)
 facing_right_position = Vector2(28.5, 0.5)
 
 [node name="Aerial1" type="Area2D" parent="." node_paths=PackedStringArray("player", "facing_shape")]
-collision_layer = 8
-collision_mask = 2
 monitoring = false
 script = ExtResource("19_i1om8")
 player = NodePath("..")
@@ -1728,8 +1493,6 @@ facing_right_position = Vector2(25, 0.5)
 
 [node name="Aerial1_2" type="Area2D" parent="." node_paths=PackedStringArray("player", "facing_shape")]
 position = Vector2(25, 0.5)
-collision_layer = 8
-collision_mask = 2
 monitoring = false
 script = ExtResource("19_i1om8")
 player = NodePath("..")
@@ -1745,15 +1508,12 @@ facing_right_position = Vector2(7, -0.5)
 
 [node name="Aerial1_2_2" type="Area2D" parent="." node_paths=PackedStringArray("player", "facing_shape")]
 position = Vector2(25, 0.5)
-collision_layer = 8
-collision_mask = 2
 monitoring = false
 script = ExtResource("19_i1om8")
 player = NodePath("..")
 facing_shape = NodePath("CollisionShape2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Aerial1_2_2"]
-visible = false
 position = Vector2(7.5, 0.5)
 shape = SubResource("RectangleShape2D_jp35t")
 script = ExtResource("18_fygxn")
@@ -1761,8 +1521,6 @@ facing_left_position = Vector2(-7.5, 0.5)
 facing_right_position = Vector2(7.5, 0.5)
 
 [node name="Aerial2" type="Area2D" parent="." node_paths=PackedStringArray("player", "facing_shape")]
-collision_layer = 8
-collision_mask = 2
 monitoring = false
 script = ExtResource("19_i1om8")
 player = NodePath("..")
@@ -1777,8 +1535,6 @@ facing_left_position = Vector2(-26, 0)
 facing_right_position = Vector2(26, 0)
 
 [node name="Aerial3" type="Area2D" parent="." node_paths=PackedStringArray("player", "facing_shape")]
-collision_layer = 8
-collision_mask = 2
 monitoring = false
 script = ExtResource("19_i1om8")
 player = NodePath("..")
@@ -1793,8 +1549,6 @@ facing_left_position = Vector2(-24, 1.25)
 facing_right_position = Vector2(24, 1.25)
 
 [node name="AttackSlide" type="Area2D" parent="." node_paths=PackedStringArray("player", "facing_shape")]
-collision_layer = 8
-collision_mask = 2
 monitoring = false
 script = ExtResource("19_i1om8")
 player = NodePath("..")

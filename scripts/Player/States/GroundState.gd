@@ -12,6 +12,7 @@ class_name GroundState
 @export var attack1_2_animation : String = "Attack1-2"
 @export var attack2_2_animation : String = "Attack2-2"
 @export var attack_up_animation : String = "AttackUp"
+@export var attack_lunge_animation : String = "Lunge"
 @export var crouch_animation : String = "Crouch"
 @export var guard_animation : String = "BlockStart"
 @export var walk_animation : String = "Walk"
@@ -21,18 +22,21 @@ class_name GroundState
 @export var attack_sprite : Sprite2D
 @export var crouch_sprite : Sprite2D
 @export var guard_sprite : Sprite2D
+@export var ground_collision : CollisionShape2D
 @onready var timer : Timer = $Timer
 var timer_started = false
 
 func on_enter():
 	character.hide_animations()
 	idle_sprite.show()
+	character.hide_collisions()
+	ground_collision.disabled = false
 	if character.locked_on:
 		lock_on()
 	
 
 func state_process(delta):
-	if (character.direction.y > 0.85):
+	if (character.direction.y >= 0.7):
 		crouch()
 	if (!character.is_on_floor()):
 		if (not timer_started):
@@ -51,8 +55,6 @@ func state_input(event : InputEvent):
 		jump()
 	if (event.is_action_pressed("attack")):
 		attack()
-	if (event.is_action_pressed("move_down")):
-		crouch()
 	if (event.is_action_pressed("guard")):
 		guard()
 	if (event.is_action_pressed("lock_on")):
@@ -73,6 +75,8 @@ func attack():
 	attack_sprite.show()
 	if (character.direction.y < -0.7):
 		playback.travel(attack_up_animation)
+	elif (character.locked_on and ((character.direction.x > 0.5 and character.facing_right) or (character.direction.x < -0.5 and not character.facing_right))):
+		playback.travel(attack_lunge_animation)
 	elif (attack_state.timer2.is_stopped()):
 		playback.travel(attack1_animation)
 	else:
