@@ -15,5 +15,7 @@ func hit(damage : int, is_knockup : bool):
 	health -= damage
 	
 	character.knocked_up = is_knockup
+	character.is_hit = true
 	if (health <= 0):
-		get_parent().queue_free()
+		pass
+		# get_parent().queue_free()

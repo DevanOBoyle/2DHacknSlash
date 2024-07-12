@@ -4,6 +4,7 @@ class_name EnemyIdleState
 
 @export var air_state : State
 @export var attack_state : State
+@export var hit_state : State
 @export var wait_animation : String = "Wait"
 @export var next_direction : int = -1
 @export var WALK_SPEED = 50
@@ -13,6 +14,8 @@ class_name EnemyIdleState
 
 # Called when the node enters the scene tree for the first time.
 func state_process(delta):
+	if character.is_hit:
+		next_state = hit_state
 	if character.is_on_wall() or not ground_check.is_colliding():
 		character.direction.x *= -1
 	character.velocity.x = character.direction.x * WALK_SPEED

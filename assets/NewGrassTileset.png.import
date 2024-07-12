@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cdlxm5py7wkn3"
-path="res://.godot/imported/PlayerRedo.png-b92de692006f37f40c3aa9348de592a3.ctex"
+uid="uid://wombh7s3xx58"
+path="res://.godot/imported/NewGrassTileset.png-8e73775001f5090c10f788c18d49e911.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/PlayerSprites/PlayerRedo.png"
-dest_files=["res://.godot/imported/PlayerRedo.png-b92de692006f37f40c3aa9348de592a3.ctex"]
+source_file="res://assets/NewGrassTileset.png"
+dest_files=["res://.godot/imported/NewGrassTileset.png-8e73775001f5090c10f788c18d49e911.ctex"]
 
 [params]
 

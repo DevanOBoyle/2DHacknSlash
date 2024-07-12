@@ -17,7 +17,7 @@ func state_input(event):
 		playback.travel(guard_end_animation)
 	
 func on_exit():
-	character.hide_animations()
+	character.hide_sprites()
 	idle_sprite.show()
 
 func _on_animation_tree_animation_finished(anim_name):

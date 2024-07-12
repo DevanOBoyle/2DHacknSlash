@@ -16,6 +16,8 @@ var collisions : Array[CollisionShape2D]
 var direction : Vector2 = Vector2.ZERO
 var facing_right : bool = true
 var locked_on : bool = false
+var knocked_up : bool = false
+var is_hit : bool = false
 @export var ray_length = 20
 
 @export var ground_state : State
@@ -35,9 +37,9 @@ func _ready():
 			print(sprites)
 		if (child is CollisionShape2D):
 			collisions.append(child)
-	hide_animations()
+	hide_sprites()
 	
-func hide_animations() -> void:
+func hide_sprites() -> void:
 	for sprite in sprites:
 		sprite.hide()
 
@@ -49,17 +51,19 @@ func change_direction(direction : bool) -> void:
 	for sprite in sprites:
 		sprite.flip_h = direction
 	if (direction):
-		$RayCast2D.target_position.x = -ray_length
+		$RayCastAbove.target_position.x = -ray_length
+		$RayCastBelow.target_position.x = -ray_length
 	else:
-		$RayCast2D.target_position.x = ray_length
+		$RayCastAbove.target_position.x = ray_length
+		$RayCastBelow.target_position.x = ray_length
 	facing_right = !direction
+	emit_signal("facing_direction_changed", facing_right)
 
 func update_facing_direction() -> void:
 	if (direction.x < 0):
 		change_direction(true)
 	elif (direction.x > 0):
 		change_direction(false)
-	emit_signal("facing_direction_changed", facing_right)
 
 func _input(event : InputEvent):
 	if (event.is_action_pressed("lock_on")):

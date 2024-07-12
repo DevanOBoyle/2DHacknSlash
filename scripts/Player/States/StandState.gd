@@ -19,7 +19,7 @@ func state_input(event : InputEvent):
 func jump():
 	character.velocity.y = character.JUMP_VELOCITY
 	air_state.jump_pressed = true;
-	character.hide_animations()
+	character.hide_sprites()
 	jump_sprite.show()
 	playback.travel(jump_animation)
 	next_state = air_state

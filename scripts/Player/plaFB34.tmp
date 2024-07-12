@@ -1,11 +1,11 @@
-[gd_scene load_steps=207 format=3 uid="uid://b6iej1bmrskf3"]
+[gd_scene load_steps=208 format=3 uid="uid://b6iej1bmrskf3"]
 
 [ext_resource type="Script" path="res://scripts/Player/Player.gd" id="1_74715"]
 [ext_resource type="Texture2D" uid="uid://cdlxm5py7wkn3" path="res://assets/PlayerSprites/PlayerRedo.png" id="2_ww4hs"]
-[ext_resource type="Texture2D" uid="uid://deeqje8in1qda" path="res://assets/PlayerSprites/PlayerJump.png" id="4_bdhal"]
+[ext_resource type="Texture2D" uid="uid://b7qgp4voenfjn" path="res://assets/PlayerSprites/PlayerJump.png" id="4_bdhal"]
 [ext_resource type="Script" path="res://scripts/Player/HitBox.gd" id="4_pep4p"]
 [ext_resource type="Texture2D" uid="uid://d06kggyftn3c3" path="res://assets/PlayerSprites/PlayerAttack.png" id="5_t7o2b"]
-[ext_resource type="Texture2D" uid="uid://bf6fufbm7g7bp" path="res://assets/PlayerSprites/PlayerCrouch.png" id="6_hfop5"]
+[ext_resource type="Texture2D" uid="uid://ddnnxuu5ov2n8" path="res://assets/PlayerSprites/PlayerCrouch.png" id="6_hfop5"]
 [ext_resource type="Texture2D" uid="uid://dbslffkvbwy6v" path="res://assets/PlayerSprites/PlayerBlock.png" id="7_i8hef"]
 [ext_resource type="Script" path="res://scripts/Enemy/Damageable.gd" id="7_xnn3l"]
 [ext_resource type="Script" path="res://scripts/Player/States/StateMachine.gd" id="8_dtmbx"]
@@ -516,7 +516,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_ucm0d"]
 resource_name = "Crouch_Attack"
-length = 0.45
+length = 0.38
 step = 0.02
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -525,10 +525,10 @@ tracks/0/path = NodePath("Crouch:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.06, 0.14, 0.22, 0.38, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.06, 0.12, 0.28, 0.34),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 1,
-"values": [10, 11, 12, 13, 14, 15]
+"values": [8, 9, 10, 9, 8]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -578,24 +578,6 @@ tracks/0/keys = {
 "values": [4, 5, 6, 7, 8]
 }
 
-[sub_resource type="Animation" id="Animation_yf8f0"]
-resource_name = "Fall"
-length = 0.5
-loop_mode = 1
-step = 0.04
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Jump:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.16, 0.28, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [6, 7, 8, 9]
-}
-
 [sub_resource type="Animation" id="Animation_kr13n"]
 resource_name = "Idle"
 length = 1.5
@@ -633,7 +615,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_tfwti"]
 resource_name = "JumpDescend"
-length = 0.27
+length = 0.26
 step = 0.02
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -642,10 +624,10 @@ tracks/0/path = NodePath("Jump:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.06, 0.14, 0.2),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.08, 0.16),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [4, 5, 6, 7]
+"values": [5, 6, 7]
 }
 
 [sub_resource type="Animation" id="Animation_m23go"]
@@ -664,18 +646,6 @@ tracks/0/keys = {
 "update": 1,
 "values": [10, 11, 12, 13, 14, 15]
 }
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("PlayerStateMachine/Landing:cancelable")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.13),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [false, true]
-}
 
 [sub_resource type="Animation" id="Animation_c2dq5"]
 resource_name = "LedgeHold"
@@ -689,10 +659,10 @@ tracks/0/path = NodePath("Jump:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.4, 0.64, 1.04),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.22, 0.5, 0.78, 1.14),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 1,
-"values": [17, 18, 19, 20]
+"values": [15, 15, 16, 17, 18]
 }
 
 [sub_resource type="Animation" id="Animation_exvxl"]
@@ -812,6 +782,24 @@ tracks/0/keys = {
 "values": [16]
 }
 
+[sub_resource type="Animation" id="Animation_yf8f0"]
+resource_name = "Fall"
+length = 0.5
+loop_mode = 1
+step = 0.04
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Jump:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.16, 0.28, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [6, 7, 8, 9]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_a852d"]
 _data = {
 "Aerial1": SubResource("Animation_pk6ye"),
@@ -849,8 +837,14 @@ _data = {
 "WallHold": SubResource("Animation_bdxog")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s5tfb"]
+size = Vector2(11, 24)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_85ixb"]
 size = Vector2(15, 25)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f7di1"]
+size = Vector2(15, 1.75)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5r30w"]
 size = Vector2(16, 16)
@@ -1162,6 +1156,8 @@ advance_mode = 2
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_k2ex5"]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_j16b0"]
+switch_mode = 2
+advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_r1t6y"]
 
@@ -1207,16 +1203,17 @@ advance_mode = 2
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_n26bk"]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_1jsdq"]
+switch_mode = 2
+advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_wo06d"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_tit2u"]
+switch_mode = 2
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_n7xtn"]
 states/Aerial1/node = SubResource("AnimationNodeAnimation_vb5t5")
-states/Aerial1/position = Vector2(799.35, -138.6)
+states/Aerial1/position = Vector2(814.35, -138.6)
 states/Aerial1-2/node = SubResource("AnimationNodeAnimation_2l1gf")
-states/Aerial1-2/position = Vector2(974.52, -35)
+states/Aerial1-2/position = Vector2(907.35, -52.756)
 states/Aerial2/node = SubResource("AnimationNodeAnimation_73fn2")
 states/Aerial2/position = Vector2(974.52, -138.6)
 states/Aerial3/node = SubResource("AnimationNodeAnimation_mvy0o")
@@ -1257,13 +1254,13 @@ states/Crouch_Idle/node = SubResource("AnimationNodeAnimation_2h0mt")
 states/Crouch_Idle/position = Vector2(162.517, 284.608)
 states/End/position = Vector2(1548, -11)
 states/Fall/node = SubResource("AnimationNodeAnimation_yk7y6")
-states/Fall/position = Vector2(823.35, -30)
+states/Fall/position = Vector2(1223.35, -52.756)
 states/JumpAscend/node = SubResource("AnimationNodeAnimation_cr51l")
 states/JumpAscend/position = Vector2(443.263, -35)
 states/JumpDescend/node = SubResource("AnimationNodeAnimation_gkmqb")
-states/JumpDescend/position = Vector2(637, -30)
+states/JumpDescend/position = Vector2(665, -35)
 states/Land/node = SubResource("AnimationNodeAnimation_tc0r2")
-states/Land/position = Vector2(443.263, 52)
+states/Land/position = Vector2(443.263, 57)
 states/LedgeHold/node = SubResource("AnimationNodeAnimation_fb5ci")
 states/LedgeHold/position = Vector2(1402.35, 41.899)
 states/Lunge/node = SubResource("AnimationNodeAnimation_tw186")
@@ -1276,8 +1273,8 @@ states/WalkLeft/position = Vector2(184.346, -138.6)
 states/WalkRight/node = SubResource("AnimationNodeBlendSpace1D_qhe6u")
 states/WalkRight/position = Vector2(16.346, -138.6)
 states/WallHold/node = SubResource("AnimationNodeAnimation_a3p26")
-states/WallHold/position = Vector2(443.263, -146.6)
-transitions = ["JumpAscend", "JumpDescend", SubResource("AnimationNodeStateMachineTransition_uk4mx"), "JumpDescend", "Land", SubResource("AnimationNodeStateMachineTransition_2hnk0"), "Land", "JumpAscend", SubResource("AnimationNodeStateMachineTransition_rnigy"), "Attack1", "Attack2", SubResource("AnimationNodeStateMachineTransition_vx0pb"), "Attack2", "Attack3", SubResource("AnimationNodeStateMachineTransition_jo1om"), "Attack1", "Attack1-2", SubResource("AnimationNodeStateMachineTransition_mgihx"), "Attack2", "Attack2-2", SubResource("AnimationNodeStateMachineTransition_jg41e"), "Attack2-2", "Attack2-3", SubResource("AnimationNodeStateMachineTransition_bvf13"), "Attack2-3", "Attack2-4", SubResource("AnimationNodeStateMachineTransition_cydy5"), "Crouch", "Crouch_Idle", SubResource("AnimationNodeStateMachineTransition_v6vpw"), "Crouch_Idle", "Crouch_Attack", SubResource("AnimationNodeStateMachineTransition_hllu8"), "Crouch_Attack", "Crouch_Idle", SubResource("AnimationNodeStateMachineTransition_tsmck"), "Crouch_Idle", "Crouch_End", SubResource("AnimationNodeStateMachineTransition_rtrmx"), "Crouch_Attack", "Crouch_End", SubResource("AnimationNodeStateMachineTransition_tif0f"), "Crouch_End", "JumpAscend", SubResource("AnimationNodeStateMachineTransition_hiq2t"), "Crouch_Attack", "JumpDescend", SubResource("AnimationNodeStateMachineTransition_oo1pq"), "Crouch_Idle", "JumpDescend", SubResource("AnimationNodeStateMachineTransition_pmhu4"), "JumpAscend", "WallHold", SubResource("AnimationNodeStateMachineTransition_uxqwe"), "JumpDescend", "WallHold", SubResource("AnimationNodeStateMachineTransition_4h7dd"), "WallHold", "JumpAscend", SubResource("AnimationNodeStateMachineTransition_jglvy"), "WallHold", "JumpDescend", SubResource("AnimationNodeStateMachineTransition_jr04a"), "JumpDescend", "JumpAscend", SubResource("AnimationNodeStateMachineTransition_6vurb"), "Crouch", "Crouch_End", SubResource("AnimationNodeStateMachineTransition_hdu3p"), "Aerial1", "Aerial1-2", SubResource("AnimationNodeStateMachineTransition_c782g"), "Aerial1-2", "Aerial2", SubResource("AnimationNodeStateMachineTransition_x8kbj"), "Aerial2", "Aerial3", SubResource("AnimationNodeStateMachineTransition_tugfu"), "Aerial1", "Aerial2", SubResource("AnimationNodeStateMachineTransition_cmcc0"), "JumpAscend", "Aerial1", SubResource("AnimationNodeStateMachineTransition_x7x7e"), "JumpDescend", "Aerial1", SubResource("AnimationNodeStateMachineTransition_pjb8t"), "Aerial1", "JumpDescend", SubResource("AnimationNodeStateMachineTransition_okq2r"), "Aerial1", "WallHold", SubResource("AnimationNodeStateMachineTransition_r432l"), "Aerial1-2", "WallHold", SubResource("AnimationNodeStateMachineTransition_72gym"), "Aerial3", "WallHold", SubResource("AnimationNodeStateMachineTransition_kpb77"), "Aerial2", "WallHold", SubResource("AnimationNodeStateMachineTransition_offhl"), "Aerial1-2", "JumpDescend", SubResource("AnimationNodeStateMachineTransition_khtvr"), "Aerial2", "JumpDescend", SubResource("AnimationNodeStateMachineTransition_ioqh2"), "Aerial3", "JumpDescend", SubResource("AnimationNodeStateMachineTransition_r6bbm"), "Aerial1", "Land", SubResource("AnimationNodeStateMachineTransition_htnvv"), "Aerial1-2", "Land", SubResource("AnimationNodeStateMachineTransition_6ta4b"), "Aerial2", "Land", SubResource("AnimationNodeStateMachineTransition_ofmdp"), "Aerial3", "Land", SubResource("AnimationNodeStateMachineTransition_r84vq"), "JumpDescend", "Aerial1-2", SubResource("AnimationNodeStateMachineTransition_rjruj"), "JumpAscend", "Aerial1-2", SubResource("AnimationNodeStateMachineTransition_oxkhr"), "Move", "WalkRight", SubResource("AnimationNodeStateMachineTransition_ukw3h"), "WalkRight", "Move", SubResource("AnimationNodeStateMachineTransition_lj1ln"), "Move", "WalkLeft", SubResource("AnimationNodeStateMachineTransition_8bb1p"), "WalkLeft", "Move", SubResource("AnimationNodeStateMachineTransition_8daqi"), "Move", "Attack1", SubResource("AnimationNodeStateMachineTransition_4hi0o"), "Attack1", "Move", SubResource("AnimationNodeStateMachineTransition_xj1v1"), "Attack2", "Move", SubResource("AnimationNodeStateMachineTransition_op4bu"), "Attack3", "Move", SubResource("AnimationNodeStateMachineTransition_m2mx3"), "Attack1-2", "Move", SubResource("AnimationNodeStateMachineTransition_by4ho"), "Attack2-2", "Move", SubResource("AnimationNodeStateMachineTransition_kk7ik"), "Attack2-3", "Move", SubResource("AnimationNodeStateMachineTransition_6s20b"), "Attack2-4", "Move", SubResource("AnimationNodeStateMachineTransition_6ldlx"), "Move", "Crouch", SubResource("AnimationNodeStateMachineTransition_pe7r4"), "Crouch_End", "Move", SubResource("AnimationNodeStateMachineTransition_xdvcf"), "Move", "AttackUp", SubResource("AnimationNodeStateMachineTransition_6mehf"), "AttackUp", "Move", SubResource("AnimationNodeStateMachineTransition_k2ex5"), "Land", "Move", SubResource("AnimationNodeStateMachineTransition_j16b0"), "Move", "JumpAscend", SubResource("AnimationNodeStateMachineTransition_r1t6y"), "Move", "JumpDescend", SubResource("AnimationNodeStateMachineTransition_3di0w"), "Start", "Move", SubResource("AnimationNodeStateMachineTransition_m8pv7"), "Move", "BlockStart", SubResource("AnimationNodeStateMachineTransition_qysnm"), "BlockStart", "BlockIdle", SubResource("AnimationNodeStateMachineTransition_se8e6"), "BlockIdle", "BlockEnd", SubResource("AnimationNodeStateMachineTransition_eplkk"), "BlockEnd", "Move", SubResource("AnimationNodeStateMachineTransition_yqupv"), "Move", "Lunge", SubResource("AnimationNodeStateMachineTransition_r8skh"), "Lunge", "Move", SubResource("AnimationNodeStateMachineTransition_j46wj"), "JumpAscend", "LedgeHold", SubResource("AnimationNodeStateMachineTransition_8oheu"), "LedgeHold", "JumpAscend", SubResource("AnimationNodeStateMachineTransition_ns2h0"), "JumpDescend", "LedgeHold", SubResource("AnimationNodeStateMachineTransition_ymk73"), "LedgeHold", "JumpDescend", SubResource("AnimationNodeStateMachineTransition_dnc6f"), "AerialDown", "AerialDownRepeat", SubResource("AnimationNodeStateMachineTransition_yc0jn"), "JumpAscend", "AerialDown", SubResource("AnimationNodeStateMachineTransition_m8tjv"), "JumpDescend", "AerialDown", SubResource("AnimationNodeStateMachineTransition_8g8vr"), "AerialDownRepeat", "Land", SubResource("AnimationNodeStateMachineTransition_lqglq"), "AerialDown", "Land", SubResource("AnimationNodeStateMachineTransition_n26bk"), "JumpDescend", "Fall", SubResource("AnimationNodeStateMachineTransition_1jsdq"), "Fall", "Land", SubResource("AnimationNodeStateMachineTransition_wo06d"), "Fall", "WallHold", SubResource("AnimationNodeStateMachineTransition_tit2u")]
+states/WallHold/position = Vector2(443.263, -138.6)
+transitions = ["JumpAscend", "JumpDescend", SubResource("AnimationNodeStateMachineTransition_uk4mx"), "JumpDescend", "Land", SubResource("AnimationNodeStateMachineTransition_2hnk0"), "Land", "JumpAscend", SubResource("AnimationNodeStateMachineTransition_rnigy"), "Attack1", "Attack2", SubResource("AnimationNodeStateMachineTransition_vx0pb"), "Attack2", "Attack3", SubResource("AnimationNodeStateMachineTransition_jo1om"), "Attack1", "Attack1-2", SubResource("AnimationNodeStateMachineTransition_mgihx"), "Attack2", "Attack2-2", SubResource("AnimationNodeStateMachineTransition_jg41e"), "Attack2-2", "Attack2-3", SubResource("AnimationNodeStateMachineTransition_bvf13"), "Attack2-3", "Attack2-4", SubResource("AnimationNodeStateMachineTransition_cydy5"), "Crouch", "Crouch_Idle", SubResource("AnimationNodeStateMachineTransition_v6vpw"), "Crouch_Idle", "Crouch_Attack", SubResource("AnimationNodeStateMachineTransition_hllu8"), "Crouch_Attack", "Crouch_Idle", SubResource("AnimationNodeStateMachineTransition_tsmck"), "Crouch_Idle", "Crouch_End", SubResource("AnimationNodeStateMachineTransition_rtrmx"), "Crouch_Attack", "Crouch_End", SubResource("AnimationNodeStateMachineTransition_tif0f"), "Crouch_End", "JumpAscend", SubResource("AnimationNodeStateMachineTransition_hiq2t"), "Crouch_Attack", "JumpDescend", SubResource("AnimationNodeStateMachineTransition_oo1pq"), "Crouch_Idle", "JumpDescend", SubResource("AnimationNodeStateMachineTransition_pmhu4"), "JumpAscend", "WallHold", SubResource("AnimationNodeStateMachineTransition_uxqwe"), "JumpDescend", "WallHold", SubResource("AnimationNodeStateMachineTransition_4h7dd"), "WallHold", "JumpAscend", SubResource("AnimationNodeStateMachineTransition_jglvy"), "WallHold", "JumpDescend", SubResource("AnimationNodeStateMachineTransition_jr04a"), "JumpDescend", "JumpAscend", SubResource("AnimationNodeStateMachineTransition_6vurb"), "Crouch", "Crouch_End", SubResource("AnimationNodeStateMachineTransition_hdu3p"), "Aerial1", "Aerial1-2", SubResource("AnimationNodeStateMachineTransition_c782g"), "Aerial1-2", "Aerial2", SubResource("AnimationNodeStateMachineTransition_x8kbj"), "Aerial2", "Aerial3", SubResource("AnimationNodeStateMachineTransition_tugfu"), "Aerial1", "Aerial2", SubResource("AnimationNodeStateMachineTransition_cmcc0"), "JumpAscend", "Aerial1", SubResource("AnimationNodeStateMachineTransition_x7x7e"), "JumpDescend", "Aerial1", SubResource("AnimationNodeStateMachineTransition_pjb8t"), "Aerial1", "JumpDescend", SubResource("AnimationNodeStateMachineTransition_okq2r"), "Aerial1", "WallHold", SubResource("AnimationNodeStateMachineTransition_r432l"), "Aerial1-2", "WallHold", SubResource("AnimationNodeStateMachineTransition_72gym"), "Aerial3", "WallHold", SubResource("AnimationNodeStateMachineTransition_kpb77"), "Aerial2", "WallHold", SubResource("AnimationNodeStateMachineTransition_offhl"), "Aerial1-2", "JumpDescend", SubResource("AnimationNodeStateMachineTransition_khtvr"), "Aerial2", "JumpDescend", SubResource("AnimationNodeStateMachineTransition_ioqh2"), "Aerial3", "JumpDescend", SubResource("AnimationNodeStateMachineTransition_r6bbm"), "Aerial1", "Land", SubResource("AnimationNodeStateMachineTransition_htnvv"), "Aerial1-2", "Land", SubResource("AnimationNodeStateMachineTransition_6ta4b"), "Aerial2", "Land", SubResource("AnimationNodeStateMachineTransition_ofmdp"), "Aerial3", "Land", SubResource("AnimationNodeStateMachineTransition_r84vq"), "JumpDescend", "Aerial1-2", SubResource("AnimationNodeStateMachineTransition_rjruj"), "JumpAscend", "Aerial1-2", SubResource("AnimationNodeStateMachineTransition_oxkhr"), "Move", "WalkRight", SubResource("AnimationNodeStateMachineTransition_ukw3h"), "WalkRight", "Move", SubResource("AnimationNodeStateMachineTransition_lj1ln"), "Move", "WalkLeft", SubResource("AnimationNodeStateMachineTransition_8bb1p"), "WalkLeft", "Move", SubResource("AnimationNodeStateMachineTransition_8daqi"), "Move", "Attack1", SubResource("AnimationNodeStateMachineTransition_4hi0o"), "Attack1", "Move", SubResource("AnimationNodeStateMachineTransition_xj1v1"), "Attack2", "Move", SubResource("AnimationNodeStateMachineTransition_op4bu"), "Attack3", "Move", SubResource("AnimationNodeStateMachineTransition_m2mx3"), "Attack1-2", "Move", SubResource("AnimationNodeStateMachineTransition_by4ho"), "Attack2-2", "Move", SubResource("AnimationNodeStateMachineTransition_kk7ik"), "Attack2-3", "Move", SubResource("AnimationNodeStateMachineTransition_6s20b"), "Attack2-4", "Move", SubResource("AnimationNodeStateMachineTransition_6ldlx"), "Move", "Crouch", SubResource("AnimationNodeStateMachineTransition_pe7r4"), "Crouch_End", "Move", SubResource("AnimationNodeStateMachineTransition_xdvcf"), "Move", "AttackUp", SubResource("AnimationNodeStateMachineTransition_6mehf"), "AttackUp", "Move", SubResource("AnimationNodeStateMachineTransition_k2ex5"), "Land", "Move", SubResource("AnimationNodeStateMachineTransition_j16b0"), "Move", "JumpAscend", SubResource("AnimationNodeStateMachineTransition_r1t6y"), "Move", "JumpDescend", SubResource("AnimationNodeStateMachineTransition_3di0w"), "Start", "Move", SubResource("AnimationNodeStateMachineTransition_m8pv7"), "Move", "BlockStart", SubResource("AnimationNodeStateMachineTransition_qysnm"), "BlockStart", "BlockIdle", SubResource("AnimationNodeStateMachineTransition_se8e6"), "BlockIdle", "BlockEnd", SubResource("AnimationNodeStateMachineTransition_eplkk"), "BlockEnd", "Move", SubResource("AnimationNodeStateMachineTransition_yqupv"), "Move", "Lunge", SubResource("AnimationNodeStateMachineTransition_r8skh"), "Lunge", "Move", SubResource("AnimationNodeStateMachineTransition_j46wj"), "JumpAscend", "LedgeHold", SubResource("AnimationNodeStateMachineTransition_8oheu"), "LedgeHold", "JumpAscend", SubResource("AnimationNodeStateMachineTransition_ns2h0"), "JumpDescend", "LedgeHold", SubResource("AnimationNodeStateMachineTransition_ymk73"), "LedgeHold", "JumpDescend", SubResource("AnimationNodeStateMachineTransition_dnc6f"), "AerialDown", "AerialDownRepeat", SubResource("AnimationNodeStateMachineTransition_yc0jn"), "JumpAscend", "AerialDown", SubResource("AnimationNodeStateMachineTransition_m8tjv"), "JumpDescend", "AerialDown", SubResource("AnimationNodeStateMachineTransition_8g8vr"), "AerialDownRepeat", "Land", SubResource("AnimationNodeStateMachineTransition_lqglq"), "AerialDown", "Land", SubResource("AnimationNodeStateMachineTransition_n26bk"), "JumpDescend", "Fall", SubResource("AnimationNodeStateMachineTransition_1jsdq"), "Fall", "Land", SubResource("AnimationNodeStateMachineTransition_wo06d")]
 graph_offset = Vector2(-118.612, -220.6)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iauvi"]
@@ -1329,36 +1326,49 @@ ground_state = NodePath("PlayerStateMachine/Ground")
 aerial_state = NodePath("PlayerStateMachine/Aerial")
 grapple_state = NodePath("PlayerStateMachine/Grapple")
 
-[node name="RayCastAbove" type="RayCast2D" parent="."]
-position = Vector2(0, -5)
-target_position = Vector2(20, 0)
-collision_mask = 4
-
-[node name="RayCastBelow" type="RayCast2D" parent="."]
-position = Vector2(0, -2)
+[node name="RayCast2D" type="RayCast2D" parent="."]
+position = Vector2(0, -14)
 target_position = Vector2(20, 0)
 collision_mask = 4
 
 [node name="Idle" type="Sprite2D" parent="."]
-visible = false
 position = Vector2(-64, -64)
 texture = ExtResource("2_ww4hs")
 centered = false
 hframes = 55
-frame = 14
+frame = 11
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_a852d")
 }
 
+[node name="WallCollision" type="CollisionShape2D" parent="." node_paths=PackedStringArray("player")]
+visible = false
+position = Vector2(-0.5, 0)
+shape = SubResource("RectangleShape2D_s5tfb")
+script = ExtResource("4_pep4p")
+player = NodePath("..")
+facing_left_position = Vector2(0.5, 0)
+facing_right_position = Vector2(-0.5, 0)
+
 [node name="AirCollision" type="CollisionShape2D" parent="." node_paths=PackedStringArray("player")]
+visible = false
 position = Vector2(2, 2)
 shape = SubResource("RectangleShape2D_85ixb")
 script = ExtResource("4_pep4p")
 player = NodePath("..")
-facing_left_position = Vector2(-4, 2)
+facing_left_position = Vector2(1, 2)
 facing_right_position = Vector2(2, 2)
+
+[node name="LedgeCollision" type="CollisionShape2D" parent="." node_paths=PackedStringArray("player")]
+visible = false
+position = Vector2(1, -4)
+shape = SubResource("RectangleShape2D_f7di1")
+script = ExtResource("4_pep4p")
+player = NodePath("..")
+facing_left_position = Vector2(0, -5)
+facing_right_position = Vector2(2, -5)
 
 [node name="CrouchCollision" type="CollisionShape2D" parent="." node_paths=PackedStringArray("player")]
 visible = false
@@ -1370,32 +1380,33 @@ facing_left_position = Vector2(-2, 7)
 facing_right_position = Vector2(4, 7)
 
 [node name="GroundCollision" type="CollisionShape2D" parent="." node_paths=PackedStringArray("player")]
-visible = false
 position = Vector2(2, 2)
 shape = SubResource("RectangleShape2D_qc8ln")
 script = ExtResource("4_pep4p")
 player = NodePath("..")
-facing_left_position = Vector2(-1.5, 2.5)
+facing_left_position = Vector2(-3.5, 2.5)
 facing_right_position = Vector2(2.5, 2.5)
 
 [node name="Jump" type="Sprite2D" parent="."]
+visible = false
 texture_filter = 1
 texture = ExtResource("4_bdhal")
-hframes = 40
-frame = 16
+hframes = 27
+frame = 13
 
 [node name="Attack" type="Sprite2D" parent="."]
 visible = false
+position = Vector2(-1, 0)
 texture = ExtResource("5_t7o2b")
 hframes = 105
-frame = 77
+frame = 73
 
 [node name="Crouch" type="Sprite2D" parent="."]
 visible = false
 position = Vector2(-1, 0)
 texture = ExtResource("6_hfop5")
-hframes = 16
-frame = 14
+hframes = 11
+frame = 3
 
 [node name="Block" type="Sprite2D" parent="."]
 visible = false
@@ -1439,7 +1450,6 @@ wall_state = NodePath("../Wall")
 aerial_state = NodePath(".")
 attack_sprite = NodePath("../../Attack")
 jump_sprite = NodePath("../../Jump")
-can_move = false
 can_change_direction = false
 
 [node name="Timer" type="Timer" parent="PlayerStateMachine/Aerial"]
@@ -1450,7 +1460,7 @@ one_shot = true
 wait_time = 0.5
 one_shot = true
 
-[node name="Air" type="Node" parent="PlayerStateMachine" node_paths=PackedStringArray("landing_state", "wall_state", "ledge_state", "aerial_state", "grapple_state", "jump_sprite", "attack_sprite", "air_collision", "raycastbelow", "raycastabove")]
+[node name="Air" type="Node" parent="PlayerStateMachine" node_paths=PackedStringArray("landing_state", "wall_state", "ledge_state", "aerial_state", "grapple_state", "jump_sprite", "attack_sprite", "air_collision", "raycast")]
 script = ExtResource("10_2kuec")
 landing_state = NodePath("../Landing")
 wall_state = NodePath("../Wall")
@@ -1460,8 +1470,7 @@ grapple_state = NodePath("../Grapple")
 jump_sprite = NodePath("../../Jump")
 attack_sprite = NodePath("../../Attack")
 air_collision = NodePath("../../AirCollision")
-raycastbelow = NodePath("../../RayCastBelow")
-raycastabove = NodePath("../../RayCastAbove")
+raycast = NodePath("../../RayCast2D")
 can_change_direction = false
 
 [node name="Landing" type="Node" parent="PlayerStateMachine" node_paths=PackedStringArray("ground_state", "air_state", "idle_sprite", "run_sprite", "jump_sprite")]
@@ -1471,7 +1480,6 @@ air_state = NodePath("../Air")
 idle_sprite = NodePath("../../Idle")
 run_sprite = NodePath("../../Idle")
 jump_sprite = NodePath("../../Jump")
-cancelable = true
 
 [node name="Crouch" type="Node" parent="PlayerStateMachine" node_paths=PackedStringArray("air_state", "crouch_state", "attack_state", "stand_state", "jump_sprite", "crouch_sprite", "crouch_collision")]
 script = ExtResource("12_qb6r7")
@@ -1487,7 +1495,7 @@ can_change_direction = false
 
 [node name="Timer" type="Timer" parent="PlayerStateMachine/Crouch"]
 process_callback = 0
-wait_time = 0.55
+wait_time = 0.38
 one_shot = true
 
 [node name="Timer2" type="Timer" parent="PlayerStateMachine/Crouch"]
@@ -1508,7 +1516,6 @@ crouch_state = NodePath("../Crouch")
 attack_sprite = NodePath("../../Attack")
 crouch_sprite = NodePath("../../Crouch")
 can_move = false
-can_change_direction = false
 
 [node name="Timer" type="Timer" parent="PlayerStateMachine/Attack"]
 process_callback = 0
@@ -1540,12 +1547,7 @@ landing_state = NodePath("../Landing")
 air_state = NodePath("../Air")
 can_change_direction = false
 
-[node name="SlideTimer" type="Timer" parent="PlayerStateMachine/Wall"]
-process_callback = 0
-wait_time = 0.5
-one_shot = true
-
-[node name="JumpGraceTimer" type="Timer" parent="PlayerStateMachine/Wall"]
+[node name="Timer" type="Timer" parent="PlayerStateMachine/Wall"]
 process_callback = 0
 wait_time = 0.05
 one_shot = true
@@ -1576,6 +1578,7 @@ animation_tree = NodePath("../AnimationTree")
 state_machine = NodePath("../PlayerStateMachine")
 
 [node name="StateDebug" type="Label" parent="." node_paths=PackedStringArray("state_machine")]
+visible = false
 offset_right = 40.0
 offset_bottom = 23.0
 text = "State: "
@@ -1815,7 +1818,6 @@ facing_right_position = Vector2(14, 13)
 [connection signal="animation_changed" from="AnimationPlayer" to="." method="_on_animation_player_animation_changed"]
 [connection signal="animation_changed" from="AnimationPlayer" to="PlayerStateMachine/Air" method="_on_animation_player_animation_changed"]
 [connection signal="timeout" from="PlayerStateMachine/Crouch/Timer" to="PlayerStateMachine/Crouch" method="_on_timer_timeout"]
-[connection signal="timeout" from="PlayerStateMachine/Wall/SlideTimer" to="PlayerStateMachine/Wall" method="_on_slide_timer_timeout"]
 [connection signal="animation_finished" from="AnimationTree" to="PlayerStateMachine/Aerial" method="_on_animation_tree_animation_finished"]
 [connection signal="animation_finished" from="AnimationTree" to="PlayerStateMachine/Air" method="_on_animation_tree_animation_finished"]
 [connection signal="animation_finished" from="AnimationTree" to="PlayerStateMachine/Landing" method="_on_animation_tree_animation_finished"]

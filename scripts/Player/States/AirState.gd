@@ -8,6 +8,7 @@ class_name AirState
 @export var aerial_state : State
 @export var grapple_state : State
 @export var descend_animation : String = "JumpDescend"
+@export var fall_animation : String = "Fall"
 @export var landing_animation : String = "Land"
 @export var wall_animation : String = "WallHold"
 @export var ledge_animation : String = "LedgeHold"
@@ -17,7 +18,8 @@ class_name AirState
 @export var jump_sprite : Sprite2D
 @export var attack_sprite : Sprite2D
 @export var air_collision : CollisionShape2D
-@export var raycast : RayCast2D
+@export var raycastbelow : RayCast2D
+@export var raycastabove : RayCast2D
 const JUMP_VELOCITY = -300
 const RISING_ACCELERATION = -100
 const FALL_GRAVITY = 2500
@@ -35,6 +37,8 @@ var aerial_gravity = 0
 func on_enter():
 	character.hide_collisions()
 	air_collision.disabled = false
+	character.hide_sprites()
+	jump_sprite.show()
 	if (from_wall == true):
 		can_move = false
 
@@ -54,7 +58,7 @@ func check_facing_direction():
 	return true
 	
 func attack():
-	character.hide_animations()
+	character.hide_sprites()
 	attack_sprite.show()
 	if (character.direction.y >= 0.7):
 		playback.travel(aerial_down_animation)
@@ -75,22 +79,16 @@ func grapple():
 			
 func state_process(delta):
 	if (character.is_on_floor()):
-		character.hide_animations()
-		jump_sprite.show()
 		playback.travel(landing_animation)
 		next_state = landing_state
-	if (character.is_on_wall()):
-		character.hide_animations()
-		jump_sprite.show()
-		if (not raycast.is_colliding() and check_facing_direction()):
+	elif (character.is_on_wall()):
+		if ((raycastbelow.is_colliding() and not raycastabove.is_colliding()) and check_facing_direction()):
 			next_state = ledge_state
-		else:
+		elif (raycastbelow.is_colliding() and raycastabove.is_colliding()):
 			next_state = wall_state
 	if character.velocity.y >= 0:
 		character.velocity.y += (character.gravity + fall_gravity) * delta
 		if (falling != true):
-			character.hide_animations()
-			jump_sprite.show()
 			playback.travel(descend_animation)
 			falling = true
 			can_move = true
@@ -116,7 +114,16 @@ func on_exit():
 	can_move = true
 	if (next_state == landing_state):
 		aerial_state.can_aerial_1_2 = true
-	if (next_state == wall_state):
-		playback.travel(wall_animation)
+	#if (next_state == wall_state):
+		#playback.travel(wall_animation)
 	if (next_state == ledge_state):
 		playback.travel(ledge_animation)
+
+
+func _on_animation_tree_animation_finished(anim_name):
+	if (anim_name == descend_animation):
+		playback.travel(fall_animation)
+
+# Handle ledge collision
+func _on_ledge_area_body_entered(body):
+	next_state = ledge_state

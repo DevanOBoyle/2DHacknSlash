@@ -10,6 +10,8 @@ class_name LandingState
 @export var run_sprite : Sprite2D
 @export var jump_sprite : Sprite2D
 
+@export var cancelable = false
+
 func on_enter():
 	playback.travel(landing_animation)
 
@@ -20,11 +22,14 @@ func _on_animation_tree_animation_finished(anim_name: StringName) -> void:
 func state_input(event : InputEvent):
 	if (event.is_action_pressed("jump")):
 		jump()
+	elif (character.direction.x != 0 and cancelable):
+		next_state = ground_state
 		
 func jump():
 	character.velocity.y = character.JUMP_VELOCITY
 	air_state.jump_pressed = true;
-	character.hide_animations()
-	jump_sprite.show()
 	playback.travel(jump_animation)
 	next_state = air_state
+
+func on_exit():
+	cancelable = false

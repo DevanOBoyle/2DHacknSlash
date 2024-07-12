@@ -2,17 +2,17 @@ extends State
 
 class_name WallState
 
-@export var wall_hold_name = "WallHold"
-@export var wall_slide_name = "WallSlide"
+@export var wall_hold_animation = "WallHold"
 @export var jump_animation : String = "JumpAscend"
 @export var descend_animation : String = "JumpDescend"
 @export var landing_animation : String = "Land"
 @export var landing_state : State
 @export var air_state : State
 @export var SLIDE_GRAVITY = 200
-@onready var timer : Timer = $Timer
+@onready var grace_timer : Timer = $JumpGraceTimer
+@onready var slide_timer : Timer = $SlideTimer
 var hanging = true
-var timer_started = false
+var grace_timer_started = false
 
 func on_enter():
 	can_move = true
@@ -20,10 +20,11 @@ func on_enter():
 		character.change_direction(true)
 	else:
 		character.change_direction(false)
+	playback.travel(wall_hold_animation)
+	slide_timer.start()
 
 func state_input(event: InputEvent):
 	if (event.is_action_pressed("move_down")):
-		playback.travel(wall_slide_name)
 		hanging = false
 		SLIDE_GRAVITY = 300
 		character.velocity.y = SLIDE_GRAVITY
@@ -36,27 +37,21 @@ func state_process(delta):
 	if (character.is_on_floor()):
 		land()
 	if (not character.is_on_wall()):
-		if (not timer_started):
-			timer.start()
-			timer_started = true
+		if (not grace_timer_started):
+			grace_timer.start()
+			grace_timer_started = true
 			playback.travel(descend_animation)
 		else:
-			if (timer.is_stopped()):
-				timer_started = false
+			if (grace_timer.is_stopped()):
+				grace_timer_started = false
 				fall()
 	elif (hanging):
 		character.velocity.y = 0
 	else:
 		character.velocity.y = SLIDE_GRAVITY
 	
-
-func _on_animation_tree_animation_finished(anim_name: StringName) -> void:
-	if (anim_name == wall_hold_name):
-		playback.travel(wall_slide_name)
-		hanging = false
-	
 func jump():
-	timer.stop()
+	grace_timer.stop()
 	character.velocity.y = character.JUMP_VELOCITY
 	air_state.jump_pressed = true;
 	air_state.from_wall = true;
@@ -81,3 +76,7 @@ func land():
 func on_exit():
 	hanging = true
 	SLIDE_GRAVITY = 200
+	slide_timer.stop()
+
+func _on_slide_timer_timeout():
+	hanging = false

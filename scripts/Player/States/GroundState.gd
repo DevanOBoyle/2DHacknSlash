@@ -27,8 +27,9 @@ class_name GroundState
 var timer_started = false
 
 func on_enter():
-	character.hide_animations()
+	character.hide_sprites()
 	idle_sprite.show()
+	playback.travel("Move")
 	character.hide_collisions()
 	ground_collision.disabled = false
 	if character.locked_on:
@@ -65,14 +66,13 @@ func state_input(event : InputEvent):
 func jump():
 	character.velocity.y = character.JUMP_VELOCITY
 	air_state.jump_pressed = true;
-	character.hide_animations()
+	character.hide_sprites()
 	jump_sprite.show()
 	playback.travel(jump_animation)
 	next_state = air_state
 
 func attack():
-	character.hide_animations()
-	attack_sprite.show()
+	character.hide_sprites()
 	if (character.direction.y < -0.7):
 		playback.travel(attack_up_animation)
 	elif (character.locked_on and ((character.direction.x > 0.5 and character.facing_right) or (character.direction.x < -0.5 and not character.facing_right))):
@@ -81,16 +81,17 @@ func attack():
 		playback.travel(attack1_animation)
 	else:
 		playback.travel(attack_state.next_attack)
+	attack_sprite.show()
 	next_state = attack_state
 
 func crouch():
-	character.hide_animations()
+	character.hide_sprites()
 	crouch_sprite.show()
 	playback.travel(crouch_animation)
 	next_state = crouch_state
 
 func guard():
-	character.hide_animations()
+	character.hide_sprites()
 	guard_sprite.show()
 	playback.travel(guard_animation)
 	next_state = guard_state

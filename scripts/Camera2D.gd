@@ -15,9 +15,9 @@ func _physics_process(delta: float) -> void:
 		camera.drag_left_margin = 0.1
 		camera.drag_right_margin = 0
 		if (camera.offset.x < 35):
-			camera.offset.x += 2
+			camera.offset.x += 1
 	else:
 		camera.drag_left_margin = 0
 		camera.drag_right_margin = 0.1
 		if (camera.offset.x > -35):
-			camera.offset.x -= 2
+			camera.offset.x -= 1

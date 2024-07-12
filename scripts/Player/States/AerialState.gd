@@ -52,17 +52,17 @@ func change_state():
 	is_aerial_down = false
 	if (character.is_on_floor()):
 		next_state = landing_state
-		character.hide_animations()
+		character.hide_sprites()
 		jump_sprite.show()
 		playback.travel(landing_animation)
 	if (character.is_on_wall()):
 		next_state = wall_state
-		character.hide_animations()
+		character.hide_sprites()
 		jump_sprite.show()
 		playback.travel(wall_animation)
 	else:
 		next_state = air_state
-		character.hide_animations()
+		character.hide_sprites()
 		jump_sprite.show()
 		playback.travel(descend_animation)
 		

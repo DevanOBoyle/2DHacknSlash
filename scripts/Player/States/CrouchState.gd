@@ -7,6 +7,7 @@ class_name CrouchState
 @export var attack_state : State
 @export var stand_state : State
 @export var attack_animation : String = "Crouch_Attack"
+@export var idle_animation : String = "Crouch_Idle"
 @export var jump_animation : String = "JumpAscend"
 @export var stand_animation : String = "Crouch_End"
 @export var jump_sprite : Sprite2D
@@ -14,9 +15,8 @@ class_name CrouchState
 @export var crouch_collision : CollisionShape2D
 var is_attacking : bool = false
 var is_standing : bool = false
-var ATTACK_VELOCITY = 300
+var ATTACK_VELOCITY = 270
 
-@onready var attack_timer : Timer = $Timer
 @onready var cooldown : Timer = $Timer2
 
 func on_enter():
@@ -46,15 +46,13 @@ func state_input(event : InputEvent):
 func attack():
 	if (is_attacking == false and cooldown.is_stopped()):
 		is_attacking = true
-		attack_timer.start()
 		playback.travel(attack_animation)
-	
 	
 func jump():
 	is_attacking = false
 	character.velocity.y = character.JUMP_VELOCITY
 	air_state.jump_pressed = true;
-	character.hide_animations()
+	character.hide_sprites()
 	jump_sprite.show()
 	playback.travel(jump_animation)
 	next_state = air_state
@@ -67,9 +65,11 @@ func stand():
 
 func _on_animation_tree_animation_finished(anim_name: StringName) -> void:
 	if (anim_name == "Crouch_Attack"):
-		playback.travel("Crouch_Idle")
+		is_attacking = false
+		cooldown.start()
+		playback.travel(idle_animation)
 
-func _on_timer_timeout():
-	is_attacking = false
-	cooldown.start()
+#func _on_timer_timeout():
+	#is_attacking = false
+	#cooldown.start()
 		

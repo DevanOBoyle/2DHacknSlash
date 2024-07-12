@@ -17,6 +17,7 @@ var sprites : Array[Sprite2D]
 var direction : Vector2 = Vector2.ZERO
 var facing_right : bool = false
 var knocked_up : bool = false
+var is_hit : bool = false
 @export var ground_check_length = 7
 
 signal facing_direction_changed(facing_right : bool)
