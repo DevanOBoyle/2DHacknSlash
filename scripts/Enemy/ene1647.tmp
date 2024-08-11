@@ -1,4 +1,4 @@
-[gd_scene load_steps=65 format=3 uid="uid://chwskyh30npyb"]
+[gd_scene load_steps=58 format=3 uid="uid://chwskyh30npyb"]
 
 [ext_resource type="Script" path="res://scripts/Enemy/Enemy.gd" id="1_ucrac"]
 [ext_resource type="Texture2D" uid="uid://u1vy5ieic0yq" path="res://assets/Enemies/BanditGrunt.png" id="2_5i5xy"]
@@ -8,7 +8,6 @@
 [ext_resource type="Script" path="res://scripts/Enemy/GroundState.gd" id="5_jq4kj"]
 [ext_resource type="Script" path="res://scripts/Enemy/AirState.gd" id="6_4spxh"]
 [ext_resource type="Script" path="res://scripts/Enemy/HitState.gd" id="7_4q3ng"]
-[ext_resource type="Script" path="res://scripts/Enemy/FallState.gd" id="7_fnxfn"]
 [ext_resource type="Script" path="res://scripts/Player/States/StateDebug.gd" id="7_tqjb3"]
 [ext_resource type="Script" path="res://scripts/Enemy/AttackState.gd" id="9_xbegy"]
 [ext_resource type="Script" path="res://scripts/Enemy/RunState.gd" id="10_i5u2q"]
@@ -92,7 +91,6 @@ tracks/0/keys = {
 [sub_resource type="Animation" id="Animation_la1t2"]
 resource_name = "Fall"
 length = 0.04
-loop_mode = 1
 step = 0.02
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -110,7 +108,6 @@ tracks/0/keys = {
 [sub_resource type="Animation" id="Animation_hj73r"]
 resource_name = "Idle"
 length = 1.8
-loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -126,23 +123,6 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_7qk68"]
 resource_name = "Land"
-length = 0.42
-step = 0.02
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.04, 0.1, 0.18, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 1,
-"values": [112, 113, 114, 115, 116]
-}
-
-[sub_resource type="Animation" id="Animation_olhj5"]
-resource_name = "OnHitAir"
 length = 0.4
 step = 0.02
 tracks/0/type = "value"
@@ -152,10 +132,28 @@ tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.08, 0.14, 0.2, 0.28, 0.36),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.1, 0.18, 0.26, 0.32),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 1,
-"values": [106, 107, 108, 109, 110, 111]
+"values": [112, 113, 114, 115, 116]
+}
+
+[sub_resource type="Animation" id="Animation_olhj5"]
+resource_name = "OnHitAir"
+length = 0.65
+loop_mode = 1
+step = 0.02
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.08, 0.14, 0.2, 0.28, 0.36, 0.44, 0.52, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [101, 102, 103, 105, 106, 107, 108, 109, 110]
 }
 
 [sub_resource type="Animation" id="Animation_6dgab"]
@@ -248,7 +246,6 @@ tracks/2/keys = {
 [sub_resource type="Animation" id="Animation_8xrwl"]
 resource_name = "Walk"
 length = 0.78
-loop_mode = 1
 step = 0.13
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -281,12 +278,6 @@ _data = {
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_s726l"]
 animation = &"CombatIdle"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_j300e"]
-animation = &"Fall"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_87ai6"]
-animation = &"Land"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_n01qv"]
 animation = &"OnHitAir"
@@ -353,23 +344,11 @@ advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_5j16a"]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_hlcw1"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_7wdbi"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_2mhnx"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_77pfd"]
-
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_uyp3w"]
 states/CombatIdle/node = SubResource("AnimationNodeAnimation_s726l")
 states/CombatIdle/position = Vector2(734, 247)
-states/Fall/node = SubResource("AnimationNodeAnimation_j300e")
-states/Fall/position = Vector2(741, 340)
-states/Land/node = SubResource("AnimationNodeAnimation_87ai6")
-states/Land/position = Vector2(970, 340)
 states/OnHitAir/node = SubResource("AnimationNodeAnimation_n01qv")
-states/OnHitAir/position = Vector2(553, 350)
+states/OnHitAir/position = Vector2(574, 345)
 states/OnHitGround/node = SubResource("AnimationNodeAnimation_2iid6")
 states/OnHitGround/position = Vector2(384, 345)
 states/Run/node = SubResource("AnimationNodeAnimation_uoydb")
@@ -378,7 +357,7 @@ states/RunAttack/node = SubResource("AnimationNodeAnimation_1gpcm")
 states/RunAttack/position = Vector2(716, 146)
 states/Wait/node = SubResource("AnimationNodeBlendSpace1D_6wo4a")
 states/Wait/position = Vector2(372, 100)
-transitions = ["Start", "Wait", SubResource("AnimationNodeStateMachineTransition_tkfhw"), "Wait", "Run", SubResource("AnimationNodeStateMachineTransition_fuvov"), "Run", "Wait", SubResource("AnimationNodeStateMachineTransition_6f2hw"), "Run", "RunAttack", SubResource("AnimationNodeStateMachineTransition_clc6r"), "RunAttack", "CombatIdle", SubResource("AnimationNodeStateMachineTransition_4yaks"), "CombatIdle", "RunAttack", SubResource("AnimationNodeStateMachineTransition_niwq5"), "RunAttack", "Run", SubResource("AnimationNodeStateMachineTransition_jkn3o"), "CombatIdle", "Run", SubResource("AnimationNodeStateMachineTransition_mgygc"), "CombatIdle", "OnHitGround", SubResource("AnimationNodeStateMachineTransition_aoup2"), "Run", "OnHitGround", SubResource("AnimationNodeStateMachineTransition_n305d"), "OnHitGround", "Wait", SubResource("AnimationNodeStateMachineTransition_kcnwd"), "Wait", "OnHitGround", SubResource("AnimationNodeStateMachineTransition_a4l8e"), "Wait", "OnHitAir", SubResource("AnimationNodeStateMachineTransition_r4ua3"), "Run", "OnHitAir", SubResource("AnimationNodeStateMachineTransition_hxjeg"), "CombatIdle", "OnHitAir", SubResource("AnimationNodeStateMachineTransition_2crta"), "RunAttack", "OnHitAir", SubResource("AnimationNodeStateMachineTransition_wqo7r"), "OnHitAir", "Wait", SubResource("AnimationNodeStateMachineTransition_5j16a"), "OnHitAir", "Fall", SubResource("AnimationNodeStateMachineTransition_hlcw1"), "Fall", "Land", SubResource("AnimationNodeStateMachineTransition_7wdbi"), "OnHitAir", "Land", SubResource("AnimationNodeStateMachineTransition_2mhnx"), "Land", "Wait", SubResource("AnimationNodeStateMachineTransition_77pfd")]
+transitions = ["Start", "Wait", SubResource("AnimationNodeStateMachineTransition_tkfhw"), "Wait", "Run", SubResource("AnimationNodeStateMachineTransition_fuvov"), "Run", "Wait", SubResource("AnimationNodeStateMachineTransition_6f2hw"), "Run", "RunAttack", SubResource("AnimationNodeStateMachineTransition_clc6r"), "RunAttack", "CombatIdle", SubResource("AnimationNodeStateMachineTransition_4yaks"), "CombatIdle", "RunAttack", SubResource("AnimationNodeStateMachineTransition_niwq5"), "RunAttack", "Run", SubResource("AnimationNodeStateMachineTransition_jkn3o"), "CombatIdle", "Run", SubResource("AnimationNodeStateMachineTransition_mgygc"), "CombatIdle", "OnHitGround", SubResource("AnimationNodeStateMachineTransition_aoup2"), "Run", "OnHitGround", SubResource("AnimationNodeStateMachineTransition_n305d"), "OnHitGround", "Wait", SubResource("AnimationNodeStateMachineTransition_kcnwd"), "Wait", "OnHitGround", SubResource("AnimationNodeStateMachineTransition_a4l8e"), "Wait", "OnHitAir", SubResource("AnimationNodeStateMachineTransition_r4ua3"), "Run", "OnHitAir", SubResource("AnimationNodeStateMachineTransition_hxjeg"), "CombatIdle", "OnHitAir", SubResource("AnimationNodeStateMachineTransition_2crta"), "RunAttack", "OnHitAir", SubResource("AnimationNodeStateMachineTransition_wqo7r"), "OnHitAir", "Wait", SubResource("AnimationNodeStateMachineTransition_5j16a")]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4qqpy"]
 size = Vector2(15.25, 31)
@@ -386,13 +365,10 @@ size = Vector2(15.25, 31)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vymnq"]
 size = Vector2(46, 46)
 
-[node name="Enemy" type="CharacterBody2D" node_paths=PackedStringArray("state_machine", "hit_state", "air_state")]
+[node name="Enemy" type="CharacterBody2D"]
 collision_layer = 2
 collision_mask = 6
 script = ExtResource("1_ucrac")
-state_machine = NodePath("EnemyStateMachine")
-hit_state = NodePath("EnemyStateMachine/GroundHit")
-air_state = NodePath("EnemyStateMachine/Air")
 
 [node name="CombatArea" type="Area2D" parent="."]
 collision_layer = 2
@@ -409,7 +385,7 @@ shape = SubResource("CircleShape2D_np20g")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_5i5xy")
 hframes = 117
-frame = 2
+frame = 115
 
 [node name="GroundCheck" type="RayCast2D" parent="."]
 position = Vector2(-7, 0)
@@ -453,66 +429,6 @@ character = NodePath("..")
 animation_tree = NodePath("../AnimationTree")
 current_state = NodePath("Air")
 
-[node name="Fall" type="Node" parent="EnemyStateMachine" node_paths=PackedStringArray("idle_state", "air_state")]
-script = ExtResource("7_fnxfn")
-idle_state = NodePath("../Idle")
-air_state = NodePath("../Air")
+[node name="AirHit" type="Node" parent="EnemyStateMachine"]
 
-[node name="Idle" type="Node" parent="EnemyStateMachine" node_paths=PackedStringArray("air_state", "attack_state", "hit_state", "ground_check")]
-script = ExtResource("5_jq4kj")
-air_state = NodePath("../Air")
-attack_state = NodePath("../Run")
-hit_state = NodePath("../GroundHit")
-ground_check = NodePath("../../GroundCheck")
-
-[node name="Timer" type="Timer" parent="EnemyStateMachine/Idle"]
-wait_time = 2.0
-
-[node name="Air" type="Node" parent="EnemyStateMachine" node_paths=PackedStringArray("fall_state")]
-script = ExtResource("6_4spxh")
-fall_state = NodePath("../Fall")
-can_move = false
-
-[node name="Attack" type="Node" parent="EnemyStateMachine" node_paths=PackedStringArray("run_state", "hit_state", "air_state")]
-script = ExtResource("9_xbegy")
-run_state = NodePath("../Run")
-hit_state = NodePath("../GroundHit")
-air_state = NodePath("../Air")
-
-[node name="Run" type="Node" parent="EnemyStateMachine" node_paths=PackedStringArray("idle_state", "attack_state", "hit_state", "air_state")]
-script = ExtResource("10_i5u2q")
-idle_state = NodePath("../Idle")
-attack_state = NodePath("../Attack")
-hit_state = NodePath("../GroundHit")
-air_state = NodePath("../Air")
-
-[node name="GroundHit" type="Node" parent="EnemyStateMachine" node_paths=PackedStringArray("idle_state")]
-script = ExtResource("7_4q3ng")
-idle_state = NodePath("../Idle")
-can_move = false
-can_change_direction = false
-
-[node name="RunAttack" type="Area2D" parent="." node_paths=PackedStringArray("enemy", "facing_shape", "attack_state")]
-collision_layer = 16
-script = ExtResource("11_1yiaa")
-enemy = NodePath("..")
-facing_shape = NodePath("CollisionShape2D")
-attack_state = NodePath("../EnemyStateMachine/Attack")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RunAttack"]
-position = Vector2(-18, -7)
-shape = SubResource("RectangleShape2D_vymnq")
-script = ExtResource("12_ycbyq")
-facing_left_position = Vector2(-18, -7)
-facing_right_position = Vector2(18, -7)
-
-[connection signal="body_entered" from="CombatArea" to="EnemyStateMachine/Run" method="_on_combat_area_body_entered"]
-[connection signal="body_exited" from="CombatArea" to="EnemyStateMachine/Attack" method="_on_combat_area_body_exited"]
-[connection signal="body_entered" from="AggroArea" to="EnemyStateMachine/Idle" method="_on_aggro_area_body_entered"]
-[connection signal="body_exited" from="AggroArea" to="EnemyStateMachine/Run" method="_on_aggro_area_body_exited"]
-[connection signal="animation_finished" from="AnimationTree" to="EnemyStateMachine/Fall" method="_on_animation_tree_animation_finished"]
-[connection signal="animation_finished" from="AnimationTree" to="EnemyStateMachine/Air" method="_on_animation_tree_animation_finished"]
-[connection signal="animation_finished" from="AnimationTree" to="EnemyStateMachine/Attack" method="_on_animation_tree_animation_finished"]
-[connection signal="animation_finished" from="AnimationTree" to="EnemyStateMachine/GroundHit" method="_on_animation_tree_animation_finished"]
-[connection signal="timeout" from="EnemyStateMachine/Idle/Timer" to="EnemyStateMachine/Idle" method="_on_timer_timeout"]
-[connection signal="body_entered" from="RunAttack" to="RunAttack" method="_on_body_entered"]
+[node name="Idle" type="Node" par

@@ -28,5 +28,3 @@ func on_exit():
 func _on_animation_tree_animation_finished(anim_name):
 	if anim_name == on_hit:
 		next_state = idle_state
-
-

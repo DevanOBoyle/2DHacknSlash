@@ -7,6 +7,7 @@ class_name AirState
 @export var ledge_state : State
 @export var aerial_state : State
 @export var grapple_state : State
+@export var jump_animation : String = "JumpAscend"
 @export var descend_animation : String = "JumpDescend"
 @export var fall_animation : String = "Fall"
 @export var landing_animation : String = "Land"
@@ -20,6 +21,9 @@ class_name AirState
 @export var air_collision : CollisionShape2D
 @export var raycastbelow : RayCast2D
 @export var raycastabove : RayCast2D
+@export var raycastbehind : RayCast2D
+@onready var coyote_timer : Timer = $CoyoteTime
+var timer_started = false
 const JUMP_VELOCITY = -300
 const RISING_ACCELERATION = -100
 const FALL_GRAVITY = 2500
@@ -28,6 +32,7 @@ var fall_gravity = 150
 var jump_pressed = false
 var falling = false
 var from_wall = false
+var from_ground = false
 var wall_jump_multiplier = 2
 
 var AERIAL_GRAVITY = -200
@@ -39,16 +44,20 @@ func on_enter():
 	air_collision.disabled = false
 	character.hide_sprites()
 	jump_sprite.show()
-	if (from_wall == true):
+	if from_wall == true:
 		can_move = false
+	if from_ground and character.velocity.y >= 0:
+		coyote_timer.start()
 
 func state_input(event: InputEvent):
-	if (character.velocity.y >= 0 and character.direction.y >= 0.7):
-		fall_gravity = FALL_GRAVITY
+	if (event.is_action_pressed("jump") and not coyote_timer.is_stopped()):
+		jump()
 	if (event.is_action_pressed("attack")):
 		attack()
 	if (event.is_action_pressed("grapple")):
 		grapple()
+	if (character.velocity.y >= 0 and character.direction.y >= 0.7):
+		fall_gravity = FALL_GRAVITY
 
 func check_facing_direction():
 	if (character.get_wall_normal().x == 1 and character.facing_right):
@@ -74,6 +83,13 @@ func attack():
 			playback.travel(aerial_state.next_attack)
 	next_state = aerial_state
 
+func jump():
+	coyote_timer.stop()
+	character.velocity.y = character.JUMP_VELOCITY
+	jump_pressed = true
+	falling = false
+	playback.travel(jump_animation)
+
 func grapple():
 	next_state = grapple_state
 			
@@ -82,9 +98,9 @@ func state_process(delta):
 		playback.travel(landing_animation)
 		next_state = landing_state
 	elif (character.is_on_wall()):
-		if ((raycastbelow.is_colliding() and not raycastabove.is_colliding()) and check_facing_direction()):
+		if (falling and (raycastbelow.is_colliding() and not raycastabove.is_colliding()) and check_facing_direction()):
 			next_state = ledge_state
-		elif (raycastbelow.is_colliding() and raycastabove.is_colliding()):
+		elif (raycastbelow.is_colliding() and raycastabove.is_colliding() or (raycastbehind.is_colliding())):
 			next_state = wall_state
 	if character.velocity.y >= 0:
 		character.velocity.y += (character.gravity + fall_gravity) * delta
@@ -111,11 +127,10 @@ func on_exit():
 	fall_gravity = 150
 	falling = false
 	from_wall = false
+	from_ground = false
 	can_move = true
 	if (next_state == landing_state):
 		aerial_state.can_aerial_1_2 = true
-	#if (next_state == wall_state):
-		#playback.travel(wall_animation)
 	if (next_state == ledge_state):
 		playback.travel(ledge_animation)
 

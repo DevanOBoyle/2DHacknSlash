@@ -20,6 +20,10 @@ var knocked_up : bool = false
 var is_hit : bool = false
 @export var ground_check_length = 7
 
+@export var state_machine : PlayerStateMachine
+@export var hit_state : State
+@export var air_state : State
+
 signal facing_direction_changed(facing_right : bool)
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
@@ -47,6 +51,10 @@ func update_facing_direction() -> void:
 	emit_signal("facing_direction_changed", facing_right)
 
 func _physics_process(delta: float) -> void:
+	#if is_hit and knocked_up:
+		#state_machine.current_state.next_state = air_state
+	#elif is_hit:
+		#state_machine.current_state.next_state = hit_state
 	#if direction.x != 0 && $EnemyStateMachine.check_if_can_move():
 		#velocity.x = direction.x * SPEED * speed_multiplier
 	#else:

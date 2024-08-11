@@ -10,20 +10,26 @@ class_name AttackState
 @export var attack2_4_name: String = "Attack2-4"
 @export var attack3_name : String = "Attack3"
 @export var attack_up_name : String = "AttackUp"
-@export var attack_lunge_name : String = "Lunge"
+@export var attack_lunge_name : String = "AttackLunge"
+
 @export var ground_state : State
-@export var crouch_state : State
 @export var attack_sprite : Sprite2D
-@export var crouch_sprite : Sprite2D
-@export var crouch_animation : String = "Crouch"
 @export var move_animation : String = "Move"
+
+@export var air_state : State
+@export var jump_sprite : Sprite2D
+@export var jump_animation : String = "JumpAscend"
+
 var next_attack : String = attack1_name
 var movement_attack3 = false
 var movement_attack2_4 = false
 var movement_lunge = false
+@export var can_attack = false
+@export var cancellable = false
 @export var ATTACK_VELOCITY3 = 260
 @export var ATTACK_VELOCITY2_4 = 240
 @export var LUNGE_VELOCITY = 700
+var has_attacked_next : bool = false
 
 @onready var timer1 : Timer = $Timer
 @onready var timer2 : Timer = $Timer2
@@ -31,6 +37,13 @@ var movement_lunge = false
 func on_enter():
 	timer1.start()
 	timer2.start()
+	character.velocity.x = 0
+
+func on_exit():
+	cancellable = false
+	movement_attack3 = false
+	movement_attack2_4 = false
+	movement_lunge = false
 
 func state_process(delta):
 	if (movement_lunge):
@@ -53,49 +66,70 @@ func state_process(delta):
 	
 func state_input(event : InputEvent):
 	if (event.is_action_pressed("attack")):
+		manage_attack()
 		timer1.start()
+		has_attacked_next = true
+	if event.is_action_pressed("jump") and cancellable:
+		jump()
+	if character.direction.x != 0 and cancellable:
+		next_state = ground_state
+		playback.travel(move_animation)
+		
+func attack_next():
+	playback.travel(next_attack)
 
-func crouch():
-	character.hide_animations()
-	crouch_sprite.show()
-	playback.travel(crouch_animation)
-	next_state = crouch_state
+func jump():
+	character.velocity.y = character.JUMP_VELOCITY
+	air_state.jump_pressed = true
+	character.hide_sprites()
+	jump_sprite.show()
+	playback.travel(jump_animation)
+	next_state = air_state
 	
-func _on_animation_tree_animation_finished(anim_name: StringName) -> void:
-	if (anim_name == attack1_name):
+func manage_attack() -> void:
+	if (playback.get_current_node() == attack1_name):
 		if (timer1.is_stopped()):
-			next_attack = attack1_2_name
-			next_state = ground_state
-			playback.travel(move_animation)
+			#next_attack = attack1_2_name
+			playback.travel(attack1_2_name)
+			#next_state = ground_state
+			#playback.travel(move_animation)
 		else:
-			playback.travel(attack2_name)
+			#playback.travel(attack2_name)
+			next_attack = attack2_name
 			timer2.start()
 			
-	if (anim_name == attack2_name):
+	if (playback.get_current_node() == attack2_name):
 		if (timer1.is_stopped()):
-			next_attack = attack2_2_name
-			next_state = ground_state
-			playback.travel(move_animation)
+			#next_attack = attack2_2_name
+			playback.travel(attack2_2_name)
+			next_attack = ""
+			#next_state = ground_state
+			#playback.travel(move_animation)
 		else:
-			playback.travel(attack3_name)
+			next_attack = attack3_name
+			#playback.travel(attack3_name)
 			
-	if (anim_name == attack2_2_name):
-		if (timer1.is_stopped()):
-			next_attack = attack2_3_name
-			next_state = ground_state
-			playback.travel(move_animation)
-		else:
-			playback.travel(attack2_3_name)
+	if (playback.get_current_node() == attack2_2_name):
+		#if (timer1.is_stopped()):
+			#next_attack = attack2_3_name
+			#next_state = ground_state
+			#playback.travel(move_animation)
+		#else:
+		#playback.travel(attack2_3_name)
+		next_attack = attack2_3_name
 	
-	if (anim_name == attack2_3_name):
-		if (timer1.is_stopped()):
-			next_attack = attack2_4_name
-			next_state = ground_state
-			playback.travel(move_animation)
-		else:
-			playback.travel(attack2_4_name)
-			
-	if (anim_name == attack3_name or anim_name == attack1_2_name or anim_name == attack2_4_name or anim_name == attack_up_name or anim_name == attack_lunge_name):
+	if (playback.get_current_node() == attack2_3_name):
+		#if (timer1.is_stopped()):
+			#next_attack = attack2_4_name
+			#next_state = ground_state
+			#playback.travel(move_animation)
+		#else:
+		#playback.travel(attack2_4_name)
+		next_attack = attack2_4_name
+
+func _on_animation_tree_animation_finished(anim_name):
+	if "Attack" in anim_name:
+		can_attack = false
 		next_attack = attack1_name
 		next_state = ground_state
 		playback.travel(move_animation)

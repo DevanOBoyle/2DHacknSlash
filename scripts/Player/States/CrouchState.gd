@@ -14,10 +14,9 @@ class_name CrouchState
 @export var crouch_sprite : Sprite2D
 @export var crouch_collision : CollisionShape2D
 var is_attacking : bool = false
-var is_standing : bool = false
 var ATTACK_VELOCITY = 270
 
-@onready var cooldown : Timer = $Timer2
+@onready var cooldown : Timer = $Timer
 
 func on_enter():
 	character.hide_collisions()
@@ -61,7 +60,6 @@ func stand():
 	if (is_attacking == false):
 		playback.travel(stand_animation)
 		next_state = stand_state
-		is_standing = false
 
 func _on_animation_tree_animation_finished(anim_name: StringName) -> void:
 	if (anim_name == "Crouch_Attack"):

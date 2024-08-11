@@ -14,16 +14,14 @@ class_name EnemyIdleState
 
 # Called when the node enters the scene tree for the first time.
 func state_process(delta):
-	if character.is_hit:
-		next_state = hit_state
 	if character.is_on_wall() or not ground_check.is_colliding():
 		character.direction.x *= -1
 	character.velocity.x = character.direction.x * WALK_SPEED
-	if (not character.is_on_floor()):
+	if character.knocked_up:
 		next_state = air_state
-	elif character.knocked_up:
 		character.velocity.y = character.JUMP_VELOCITY
-		next_state = air_state
+	elif character.is_hit:
+		next_state = hit_state
 
 func on_enter():
 	timer.start()

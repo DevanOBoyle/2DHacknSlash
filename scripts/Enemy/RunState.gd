@@ -7,8 +7,8 @@ var player : CharacterBody2D
 @export var idle_state : State
 @export var attack_state : State
 @export var hit_state : State
+@export var air_state : State
 @export var run_animation : String = "Run"
-
 
 func on_enter():
 	player = get_tree().get_nodes_in_group("Player")[0] as CharacterBody2D
@@ -23,7 +23,10 @@ func get_direction():
 		character.direction.x = 0
 	
 func state_process(delta):
-	if character.is_hit:
+	if character.knocked_up:
+		next_state = air_state
+		character.velocity.y = character.JUMP_VELOCITY
+	elif character.is_hit:
 		next_state = hit_state
 	get_direction()
 	character.velocity.x = character.direction.x * RUN_SPEED

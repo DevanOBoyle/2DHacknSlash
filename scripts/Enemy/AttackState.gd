@@ -4,6 +4,7 @@ class_name EnemyAttackState
 
 @export var run_state : State
 @export var hit_state : State
+@export var air_state : State
 @export var run_attack : String = "RunAttack"
 @export var combat_idle : String = "CombatIdle"
 
@@ -11,7 +12,12 @@ var is_attacking : bool = false
 var exited : bool = false
 
 func state_process(delta):
-	if character.is_hit:
+	if character.knocked_up:
+		next_state = air_state
+		character.velocity.y = character.JUMP_VELOCITY
+	elif character.is_hit:
+		next_state = hit_state
+	if character.is_hit and not character.knocked_up:
 		next_state = hit_state
 	if can_move:
 		character.velocity.x = character.SPEED * 1.5 * character.direction.x

@@ -9,11 +9,19 @@ class_name LandingState
 @export var idle_sprite : Sprite2D
 @export var run_sprite : Sprite2D
 @export var jump_sprite : Sprite2D
+@export var ground_collision : CollisionShape2D
 
 @export var cancelable = false
 
 func on_enter():
+	character.hide_collisions()
+	ground_collision.disabled = false
 	playback.travel(landing_animation)
+	
+func _state_process():
+	if (!character.is_on_floor()):
+		air_state.from_ground = true
+		next_state = air_state
 
 func _on_animation_tree_animation_finished(anim_name: StringName) -> void:
 	if (anim_name == landing_animation):

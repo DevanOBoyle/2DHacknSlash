@@ -29,3 +29,5 @@ func _on_player_facing_direction_changed(facing_right: bool):
 	else:
 		facing_shape.position = facing_shape.facing_left_position
  
+func _end_monitoring():
+	monitoring = false
