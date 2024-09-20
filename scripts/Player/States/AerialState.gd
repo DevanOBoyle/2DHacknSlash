@@ -15,9 +15,11 @@ class_name AerialState
 @export var landing_animation : String = "Land"
 @export var descend_animation : String = "JumpDescend"
 @export var wall_animation : String = "WallHold"
+@export var hit_boxes : Array[AttackArea]
 @export var attack_sprite : Sprite2D
 @export var jump_sprite : Sprite2D
-@export var AERIAL_VELOCITY1 = -30
+@export var AERIAL_VELOCITY1 = -40
+@export var AERIAL_VELOCITY2 = -50
 
 var is_aerial1_2 = false
 var is_aerial_down = false
@@ -33,6 +35,10 @@ func on_enter():
 	character.velocity.y = 0
 	print(aerial_state.next_attack)
 
+func on_exit():
+	for hit_box in character.hit_boxes:
+		hit_box.monitoring = false
+
 func state_input(event : InputEvent):
 	if (event.is_action_pressed("attack")):
 		timer1.start()
@@ -42,6 +48,9 @@ func state_process(delta):
 		character.velocity.y += (character.gravity + character.FALL_GRAVITY) * delta
 	elif (is_aerial1_2):
 		character.velocity.y = AERIAL_VELOCITY1
+	elif character.attack_landed:
+		character.velocity.y = AERIAL_VELOCITY2
+		character.attack_landed = false
 	else:
 		character.velocity.y += (character.gravity * 0.2) * delta
 	if (character.is_on_floor()):

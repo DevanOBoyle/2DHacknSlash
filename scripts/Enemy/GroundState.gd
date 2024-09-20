@@ -3,17 +3,20 @@ extends State
 class_name EnemyIdleState
 
 @export var air_state : State
-@export var attack_state : State
+@export var run_state : State
 @export var hit_state : State
 @export var wait_animation : String = "Wait"
 @export var next_direction : int = -1
 @export var WALK_SPEED = 50
+@export var aggro_area = Area2D
 @onready var timer : Timer = $Timer
 
 @export var ground_check : RayCast2D
 
 # Called when the node enters the scene tree for the first time.
 func state_process(delta):
+	if (character.is_aggroed):
+		next_state = run_state
 	if character.is_on_wall() or not ground_check.is_colliding():
 		character.direction.x *= -1
 	character.velocity.x = character.direction.x * WALK_SPEED
@@ -39,6 +42,6 @@ func _on_timer_timeout() -> void:
 		timer.wait_time = 5
 		next_direction *= -1
 
-func _on_aggro_area_body_entered(body):
-	if body.is_in_group("Player"):
-		next_state = attack_state
+#func _on_aggro_area_body_entered(body):
+	#if body.is_in_group("Player"):
+		#next_state = attack_state

@@ -8,16 +8,18 @@ const JUMP_VELOCITY = -300
 const RISING_ACCELERATION = -100
 const FALL_GRAVITY = 2500
 var rising_acceleration = 0
-var fall_gravity = 0
 var jump_pressed = false
 var falling = false
 var sprites : Array[Sprite2D]
 var collisions : Array[CollisionShape2D]
+var hit_boxes : Array[AttackArea]
 var direction : Vector2 = Vector2.ZERO
 var facing_right : bool = true
 var locked_on : bool = false
 var knocked_up : bool = false
+var knockup_percent : float = 1
 var is_hit : bool = false
+var attack_landed : bool = false
 @export var ray_length = 20
 
 @export var ground_state : State
@@ -37,6 +39,8 @@ func _ready():
 			print(sprites)
 		if (child is CollisionShape2D):
 			collisions.append(child)
+		if (child is AttackArea):
+			hit_boxes.append(child)
 	hide_sprites()
 	
 func hide_sprites() -> void:
@@ -91,7 +95,6 @@ func _physics_process(delta: float) -> void:
 
 	if (is_on_floor()): 
 		rising_acceleration = RISING_ACCELERATION
-		fall_gravity = 0
 		
 	move_and_slide()
 	update_animation()

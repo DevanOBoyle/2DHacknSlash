@@ -14,17 +14,19 @@ func state_process(delta):
 		playback.start(on_hit_animation, true)
 		character.is_hit = false
 		character.knocked_up = false
-		character.velocity.y = character.JUMP_VELOCITY
+		character.velocity.y = character.JUMP_VELOCITY * character.knockup_percent
+		delta = 0
 	if (character.is_on_floor()):
 		next_state = fall_state
 	elif character.velocity.y >= 0:
-		character.velocity.y += (character.gravity) * delta
+		character.velocity.y += (character.gravity + character.fall_gravity) * delta
 	else:
 		character.velocity.y += (character.gravity + rising_acceleration) * delta
 	
 func on_enter():
 	character.is_hit = false
 	character.knocked_up = false
+	character.velocity.x = 0
 	playback.travel(on_hit_animation)
 	
 func on_exit():

@@ -44,6 +44,9 @@ func on_exit():
 	movement_attack3 = false
 	movement_attack2_4 = false
 	movement_lunge = false
+	
+	for hit_box in character.hit_boxes:
+		hit_box.monitoring = false
 
 func state_process(delta):
 	if (movement_lunge):
@@ -88,44 +91,56 @@ func jump():
 	
 func manage_attack() -> void:
 	if (playback.get_current_node() == attack1_name):
-		if (timer1.is_stopped()):
-			#next_attack = attack1_2_name
-			playback.travel(attack1_2_name)
-			#next_state = ground_state
-			#playback.travel(move_animation)
+		if (character.direction.y < -0.7):
+			playback.travel(attack_up_name)
 		else:
-			#playback.travel(attack2_name)
-			next_attack = attack2_name
-			timer2.start()
+			if (timer1.is_stopped()):
+				#next_attack = attack1_2_name
+				playback.travel(attack1_2_name)
+				#next_state = ground_state
+				#playback.travel(move_animation)
+			else:
+				#playback.travel(attack2_name)
+				next_attack = attack2_name
+				timer2.start()
 			
 	if (playback.get_current_node() == attack2_name):
-		if (timer1.is_stopped()):
-			#next_attack = attack2_2_name
-			playback.travel(attack2_2_name)
-			next_attack = ""
-			#next_state = ground_state
-			#playback.travel(move_animation)
+		if (character.direction.y < -0.7):
+			playback.travel(attack_up_name)
 		else:
-			next_attack = attack3_name
-			#playback.travel(attack3_name)
+			if (timer1.is_stopped()):
+				#next_attack = attack2_2_name
+				playback.travel(attack2_2_name)
+				next_attack = ""
+				#next_state = ground_state
+				#playback.travel(move_animation)
+			else:
+				next_attack = attack3_name
+				#playback.travel(attack3_name)
 			
 	if (playback.get_current_node() == attack2_2_name):
+		if (character.direction.y < -0.7):
+			playback.travel(attack_up_name)
+		else:
 		#if (timer1.is_stopped()):
 			#next_attack = attack2_3_name
 			#next_state = ground_state
 			#playback.travel(move_animation)
 		#else:
 		#playback.travel(attack2_3_name)
-		next_attack = attack2_3_name
+			next_attack = attack2_3_name
 	
 	if (playback.get_current_node() == attack2_3_name):
+		if (character.direction.y < -0.7):
+			playback.travel(attack_up_name)
+		else:
 		#if (timer1.is_stopped()):
 			#next_attack = attack2_4_name
 			#next_state = ground_state
 			#playback.travel(move_animation)
 		#else:
 		#playback.travel(attack2_4_name)
-		next_attack = attack2_4_name
+			next_attack = attack2_4_name
 
 func _on_animation_tree_animation_finished(anim_name):
 	if "Attack" in anim_name:

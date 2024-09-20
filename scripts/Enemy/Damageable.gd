@@ -11,10 +11,11 @@ class_name Damageable
 		SignalBus.emit_signal("on_health_changed", get_parent(), value - health)
 		health = value
 
-func hit(damage : int, is_knockup : bool):
+func hit(damage : int, is_knockup : bool, knockup_percent: float = 1):
 	health -= damage
 	
 	character.knocked_up = is_knockup
+	character.knockup_percent = knockup_percent
 	character.is_hit = true
 	if (health <= 0):
 		pass

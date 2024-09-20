@@ -6,6 +6,7 @@ class_name GroundState
 @export var crouch_state : State
 @export var attack_state : State
 @export var guard_state : State
+@export var backdash_state : State
 @export var jump_animation : String = "JumpAscend"
 @export var descend_animation : String = "JumpDescend"
 @export var attack1_animation : String = "Attack1"
@@ -15,6 +16,7 @@ class_name GroundState
 @export var attack_lunge_animation : String = "AttackLunge"
 @export var crouch_animation : String = "Crouch"
 @export var guard_animation : String = "BlockStart"
+@export var backdash_animation : String = "Backdash"
 @export var walk_animation : String = "Walk"
 @export var reverse_walk_animation : String = "ReverseWalk"
 @export var idle_sprite : Sprite2D
@@ -58,6 +60,8 @@ func state_input(event : InputEvent):
 		attack()
 	if (event.is_action_pressed("guard")):
 		guard()
+	if (event.is_action_pressed("dash")):
+		dash()
 	if (event.is_action_pressed("lock_on")):
 		lock_on()
 	if (event.is_action_released("lock_on")):
@@ -96,6 +100,10 @@ func guard():
 	guard_sprite.show()
 	playback.travel(guard_animation)
 	next_state = guard_state
+
+func dash():
+	playback.travel(backdash_animation)
+	next_state = backdash_state
 
 func lock_on():
 	if (character.facing_right):

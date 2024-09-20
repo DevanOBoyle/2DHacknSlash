@@ -6,15 +6,17 @@ class_name AttackArea
 @export var player : Player
 @export var facing_shape : FacingCollisionShape2D
 @export var is_knockup : bool = false
+@export var knockup_percent : float = 0.5
 
 func _ready():
 	monitoring = false
 	player.connect("facing_direction_changed", _on_player_facing_direction_changed)
 
 func _on_body_entered(body: Node2D) -> void:
+	player.attack_landed = true
 	for child in body.get_children():
 		if child is Damageable:
-			child.hit(damage, is_knockup)
+			child.hit(damage, is_knockup, knockup_percent)
 
 func _input(event : InputEvent):
 	if (event.is_action_pressed("attack")):

@@ -160,7 +160,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_6dgab"]
 resource_name = "OnHitGround"
-length = 0.66
+length = 0.7
 step = 0.02
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -169,7 +169,7 @@ tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.04, 0.1, 0.18, 0.28, 0.34, 0.44, 0.48, 0.56, 0.6),
+"times": PackedFloat32Array(0, 0.04, 0.1, 0.18, 0.28, 0.34, 0.44, 0.52, 0.6, 0.66),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [86, 87, 88, 89, 90, 91, 92, 93, 94, 95]
@@ -207,6 +207,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_wx4ei"]
 resource_name = "RunAttack"
+length = 0.85
 step = 0.02
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -215,7 +216,7 @@ tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.18, 0.26, 0.34, 0.42, 0.5, 0.66, 0.84),
+"times": PackedFloat32Array(0, 0.1, 0.18, 0.26, 0.34, 0.42, 0.48, 0.58, 0.7),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [30, 31, 32, 33, 34, 35, 36, 37, 38]
@@ -395,12 +396,14 @@ hit_state = NodePath("EnemyStateMachine/GroundHit")
 air_state = NodePath("EnemyStateMachine/Air")
 
 [node name="CombatArea" type="Area2D" parent="."]
+visible = false
 collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CombatArea"]
 shape = SubResource("CircleShape2D_271re")
 
 [node name="AggroArea" type="Area2D" parent="."]
+visible = false
 collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AggroArea"]
@@ -409,7 +412,7 @@ shape = SubResource("CircleShape2D_np20g")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_5i5xy")
 hframes = 117
-frame = 2
+frame = 21
 
 [node name="GroundCheck" type="RayCast2D" parent="."]
 position = Vector2(-7, 0)
@@ -458,11 +461,12 @@ script = ExtResource("7_fnxfn")
 idle_state = NodePath("../Idle")
 air_state = NodePath("../Air")
 
-[node name="Idle" type="Node" parent="EnemyStateMachine" node_paths=PackedStringArray("air_state", "attack_state", "hit_state", "ground_check")]
+[node name="Idle" type="Node" parent="EnemyStateMachine" node_paths=PackedStringArray("air_state", "run_state", "hit_state", "aggro_area", "ground_check")]
 script = ExtResource("5_jq4kj")
 air_state = NodePath("../Air")
-attack_state = NodePath("../Run")
+run_state = NodePath("../Run")
 hit_state = NodePath("../GroundHit")
+aggro_area = NodePath("../../AggroArea")
 ground_check = NodePath("../../GroundCheck")
 
 [node name="Timer" type="Timer" parent="EnemyStateMachine/Idle"]
@@ -493,7 +497,9 @@ can_move = false
 can_change_direction = false
 
 [node name="RunAttack" type="Area2D" parent="." node_paths=PackedStringArray("enemy", "facing_shape", "attack_state")]
+visible = false
 collision_layer = 16
+monitoring = false
 script = ExtResource("11_1yiaa")
 enemy = NodePath("..")
 facing_shape = NodePath("CollisionShape2D")
@@ -507,8 +513,11 @@ facing_left_position = Vector2(-18, -7)
 facing_right_position = Vector2(18, -7)
 
 [connection signal="body_entered" from="CombatArea" to="EnemyStateMachine/Run" method="_on_combat_area_body_entered"]
+[connection signal="body_exited" from="CombatArea" to="." method="_on_combat_area_body_exited"]
 [connection signal="body_exited" from="CombatArea" to="EnemyStateMachine/Attack" method="_on_combat_area_body_exited"]
+[connection signal="body_entered" from="AggroArea" to="." method="_on_aggro_area_body_entered"]
 [connection signal="body_entered" from="AggroArea" to="EnemyStateMachine/Idle" method="_on_aggro_area_body_entered"]
+[connection signal="body_exited" from="AggroArea" to="." method="_on_aggro_area_body_exited"]
 [connection signal="body_exited" from="AggroArea" to="EnemyStateMachine/Run" method="_on_aggro_area_body_exited"]
 [connection signal="animation_finished" from="AnimationTree" to="EnemyStateMachine/Fall" method="_on_animation_tree_animation_finished"]
 [connection signal="animation_finished" from="AnimationTree" to="EnemyStateMachine/Air" method="_on_animation_tree_animation_finished"]

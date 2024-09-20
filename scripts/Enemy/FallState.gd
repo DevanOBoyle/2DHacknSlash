@@ -25,13 +25,14 @@ func state_process(delta):
 		next_state = air_state
 		character.is_hit = false
 		character.knocked_up = false
-		character.velocity.y = character.JUMP_VELOCITY
+		character.velocity.y = character.JUMP_VELOCITY * character.knockup_percent
+		delta = 0
 	if character.is_on_floor() and not landed:
 		playback.travel(landing_animation)
 		character.velocity.y = 0
 		landed = true
 	if not landed:
-		character.velocity.y += (character.gravity) * delta
+		character.velocity.y += (character.gravity + character.fall_gravity) * delta
 
 func _on_animation_tree_animation_finished(anim_name):
 	if anim_name == landing_animation:

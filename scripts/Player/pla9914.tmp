@@ -1,4 +1,4 @@
-[gd_scene load_steps=218 format=3 uid="uid://b6iej1bmrskf3"]
+[gd_scene load_steps=219 format=3 uid="uid://b6iej1bmrskf3"]
 
 [ext_resource type="Script" path="res://scripts/Player/Player.gd" id="1_74715"]
 [ext_resource type="Texture2D" uid="uid://br5qfklncmgb7" path="res://assets/PlayerSprites/PlayerRedo.png" id="2_ww4hs"]
@@ -27,6 +27,7 @@
 [ext_resource type="Script" path="res://scripts/Player/GrappleState.gd" id="18_pgvjl"]
 [ext_resource type="Script" path="res://scripts/Player/AttackCollisions/AttackArea.gd" id="19_53jxl"]
 [ext_resource type="Script" path="res://scripts/Player/AttackCollision.gd" id="19_i1om8"]
+[ext_resource type="Script" path="res://scripts/Player/CollisionHandler.gd" id="25_0utlf"]
 
 [sub_resource type="Animation" id="Animation_pk6ye"]
 resource_name = "Aerial1"
@@ -47,7 +48,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Aerial1:monitoring")
+tracks/1/path = NodePath("HitBoxHandler/Aerial1:monitoring")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -76,7 +77,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Aerial1_2:monitoring")
+tracks/1/path = NodePath("HitBoxHandler/Aerial1_2:monitoring")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -88,7 +89,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Aerial1_2_2:monitoring")
+tracks/2/path = NodePath("HitBoxHandler/Aerial1_2_2:monitoring")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -117,7 +118,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Aerial2:monitoring")
+tracks/1/path = NodePath("HitBoxHandler/Aerial2:monitoring")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -146,7 +147,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Aerial3:monitoring")
+tracks/1/path = NodePath("HitBoxHandler/Aerial3:monitoring")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -210,7 +211,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Attack1:monitoring")
+tracks/1/path = NodePath("HitBoxHandler/Attack1:monitoring")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -265,7 +266,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Attack1_2:monitoring")
+tracks/1/path = NodePath("HitBoxHandler/Attack1_2:monitoring")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -306,7 +307,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Attack2:monitoring")
+tracks/1/path = NodePath("HitBoxHandler/Attack2:monitoring")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -361,7 +362,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Attack2_2:monitoring")
+tracks/1/path = NodePath("HitBoxHandler/Attack2_2:monitoring")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -416,7 +417,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Attack2_3:monitoring")
+tracks/1/path = NodePath("HitBoxHandler/Attack2_3:monitoring")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -471,7 +472,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Attack2_4:monitoring")
+tracks/1/path = NodePath("HitBoxHandler/Attack2_4:monitoring")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -524,7 +525,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Attack3:monitoring")
+tracks/1/path = NodePath("HitBoxHandler/Attack3:monitoring")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -594,7 +595,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("AttackUp:monitoring")
+tracks/1/path = NodePath("HitBoxHandler/AttackUp:monitoring")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -733,7 +734,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("AttackSlide:monitoring")
+tracks/1/path = NodePath("HitBoxHandler/AttackSlide:monitoring")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -1548,7 +1549,7 @@ size = Vector2(25, 50.5)
 size = Vector2(16, 6)
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("ground_state", "aerial_state", "grapple_state") groups=["Player"]]
-collision_mask = 4
+collision_mask = 6
 script = ExtResource("1_74715")
 ground_state = NodePath("PlayerStateMachine/Ground")
 aerial_state = NodePath("PlayerStateMachine/Aerial")
@@ -1574,7 +1575,7 @@ position = Vector2(-64, -64)
 texture = ExtResource("2_ww4hs")
 centered = false
 hframes = 43
-frame = 22
+frame = 17
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -1613,7 +1614,6 @@ hframes = 44
 frame = 7
 
 [node name="Attack" type="Sprite2D" parent="."]
-visible = false
 texture = ExtResource("5_t7o2b")
 hframes = 145
 frame = 134
@@ -1671,8 +1671,19 @@ air_state = NodePath("../Air")
 landing_state = NodePath("../Landing")
 wall_state = NodePath("../Wall")
 aerial_state = NodePath(".")
+aerial1_name = null
+aerial1_2_name = null
+aerial2_name = null
+aerial3_name = null
+aerial_down_name = null
+aerial_down_repeat_name = null
+landing_animation = null
+descend_animation = null
+wall_animation = null
 attack_sprite = NodePath("../../Attack")
 jump_sprite = NodePath("../../Jump")
+AERIAL_VELOCITY1 = null
+AERIAL_VELOCITY2 = null
 can_move = false
 can_change_direction = false
 
@@ -1821,15 +1832,18 @@ text = "State: "
 script = ExtResource("16_spnnm")
 state_machine = NodePath("../PlayerStateMachine")
 
-[node name="Attack1" type="Area2D" parent="." node_paths=PackedStringArray("player", "facing_shape")]
+[node name="HitBoxHandler" type="Node2D" parent="."]
+script = ExtResource("25_0utlf")
+
+[node name="Attack1" type="Area2D" parent="HitBoxHandler" node_paths=PackedStringArray("player", "facing_shape")]
 collision_layer = 8
 collision_mask = 2
 monitoring = false
 script = ExtResource("19_53jxl")
-player = NodePath("..")
+player = NodePath("../..")
 facing_shape = NodePath("CollisionShape2D")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Attack1"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBoxHandler/Attack1"]
 visible = false
 position = Vector2(26, 0)
 shape = SubResource("RectangleShape2D_iauvi")
@@ -1837,16 +1851,16 @@ script = ExtResource("18_fygxn")
 facing_left_position = Vector2(-26, 0)
 facing_right_position = Vector2(26, 0)
 
-[node name="Attack1_2" type="Area2D" parent="." node_paths=PackedStringArray("player", "facing_shape")]
+[node name="Attack1_2" type="Area2D" parent="HitBoxHandler" node_paths=PackedStringArray("player", "facing_shape")]
 collision_layer = 8
 collision_mask = 2
 monitoring = false
 script = ExtResource("19_i1om8")
 damage = 20
-player = NodePath("..")
+player = NodePath("../..")
 facing_shape = NodePath("CollisionShape2D")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Attack1_2"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBoxHandler/Attack1_2"]
 visible = false
 position = Vector2(31, -4.25)
 shape = SubResource("RectangleShape2D_ptkjc")
@@ -1854,15 +1868,15 @@ script = ExtResource("18_fygxn")
 facing_left_position = Vector2(-31.5, -3.5)
 facing_right_position = Vector2(31.5, -3.5)
 
-[node name="Attack2" type="Area2D" parent="." node_paths=PackedStringArray("player", "facing_shape")]
+[node name="Attack2" type="Area2D" parent="HitBoxHandler" node_paths=PackedStringArray("player", "facing_shape")]
 collision_layer = 8
 collision_mask = 2
 monitoring = false
 script = ExtResource("19_i1om8")
-player = NodePath("..")
+player = NodePath("../..")
 facing_shape = NodePath("CollisionShape2D")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Attack2"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBoxHandler/Attack2"]
 visible = false
 position = Vector2(26, 1)
 shape = SubResource("RectangleShape2D_arq0u")
@@ -1870,15 +1884,15 @@ script = ExtResource("18_fygxn")
 facing_left_position = Vector2(-26.5, 1.5)
 facing_right_position = Vector2(26.5, 1.5)
 
-[node name="Attack2_2" type="Area2D" parent="." node_paths=PackedStringArray("player", "facing_shape")]
+[node name="Attack2_2" type="Area2D" parent="HitBoxHandler" node_paths=PackedStringArray("player", "facing_shape")]
 collision_layer = 8
 collision_mask = 2
 monitoring = false
 script = ExtResource("19_i1om8")
-player = NodePath("..")
+player = NodePath("../..")
 facing_shape = NodePath("../Attack2/CollisionShape2D")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Attack2_2"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBoxHandler/Attack2_2"]
 visible = false
 position = Vector2(29.25, 2)
 shape = SubResource("RectangleShape2D_s4btp")
@@ -1886,15 +1900,15 @@ script = ExtResource("18_fygxn")
 facing_left_position = Vector2(-29.5, 2)
 facing_right_position = Vector2(29.5, 2)
 
-[node name="Attack2_3" type="Area2D" parent="." node_paths=PackedStringArray("player", "facing_shape")]
+[node name="Attack2_3" type="Area2D" parent="HitBoxHandler" node_paths=PackedStringArray("player", "facing_shape")]
 collision_layer = 8
 collision_mask = 2
 monitoring = false
 script = ExtResource("19_i1om8")
-player = NodePath("..")
+player = NodePath("../..")
 facing_shape = NodePath("CollisionShape2D")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Attack2_3"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBoxHandler/Attack2_3"]
 visible = false
 position = Vector2(29, 1)
 shape = SubResource("RectangleShape2D_w61od")
@@ -1902,16 +1916,16 @@ script = ExtResource("18_fygxn")
 facing_left_position = Vector2(-29.5, 1)
 facing_right_position = Vector2(29.5, 1)
 
-[node name="Attack2_4" type="Area2D" parent="." node_paths=PackedStringArray("player", "facing_shape")]
+[node name="Attack2_4" type="Area2D" parent="HitBoxHandler" node_paths=PackedStringArray("player", "facing_shape")]
 collision_layer = 8
 collision_mask = 2
 monitoring = false
 script = ExtResource("19_i1om8")
 damage = 20
-player = NodePath("..")
+player = NodePath("../..")
 facing_shape = NodePath("CollisionShape2D")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Attack2_4"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBoxHandler/Attack2_4"]
 visible = false
 position = Vector2(26, -1)
 shape = SubResource("RectangleShape2D_cn8vm")
@@ -1919,16 +1933,16 @@ script = ExtResource("18_fygxn")
 facing_left_position = Vector2(-26, -1)
 facing_right_position = Vector2(26, -1)
 
-[node name="Attack3" type="Area2D" parent="." node_paths=PackedStringArray("player", "facing_shape")]
+[node name="Attack3" type="Area2D" parent="HitBoxHandler" node_paths=PackedStringArray("player", "facing_shape")]
 collision_layer = 8
 collision_mask = 2
 monitoring = false
 script = ExtResource("19_i1om8")
 damage = 15
-player = NodePath("..")
+player = NodePath("../..")
 facing_shape = NodePath("CollisionShape2D")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Attack3"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBoxHandler/Attack3"]
 visible = false
 position = Vector2(30, 3)
 shape = SubResource("RectangleShape2D_c14b7")
@@ -1936,18 +1950,18 @@ script = ExtResource("18_fygxn")
 facing_left_position = Vector2(-30.75, 2.5)
 facing_right_position = Vector2(30.75, 2.5)
 
-[node name="AttackUp" type="Area2D" parent="." node_paths=PackedStringArray("player", "facing_shape")]
+[node name="AttackUp" type="Area2D" parent="HitBoxHandler" node_paths=PackedStringArray("player", "facing_shape")]
 collision_layer = 8
 collision_mask = 2
 monitoring = false
 script = ExtResource("19_i1om8")
 damage = 15
-player = NodePath("..")
+player = NodePath("../..")
 facing_shape = NodePath("CollisionShape2D")
 is_knockup = true
 knockup_percent = 1.0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackUp"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBoxHandler/AttackUp"]
 visible = false
 position = Vector2(28, 1)
 shape = SubResource("RectangleShape2D_t4bi6")
@@ -1955,16 +1969,15 @@ script = ExtResource("18_fygxn")
 facing_left_position = Vector2(-28.5, 0.5)
 facing_right_position = Vector2(28.5, 0.5)
 
-[node name="Aerial1" type="Area2D" parent="." node_paths=PackedStringArray("player", "facing_shape")]
+[node name="Aerial1" type="Area2D" parent="HitBoxHandler" node_paths=PackedStringArray("player", "facing_shape")]
 collision_layer = 8
 collision_mask = 2
 monitoring = false
 script = ExtResource("19_i1om8")
-player = NodePath("..")
+player = NodePath("../..")
 facing_shape = NodePath("CollisionShape2D")
-knockup_percent = 0.75
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Aerial1"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBoxHandler/Aerial1"]
 visible = false
 position = Vector2(25, 0.5)
 shape = SubResource("RectangleShape2D_y6xea")
@@ -1972,17 +1985,17 @@ script = ExtResource("18_fygxn")
 facing_left_position = Vector2(-25, 0.5)
 facing_right_position = Vector2(25, 0.5)
 
-[node name="Aerial1_2" type="Area2D" parent="." node_paths=PackedStringArray("player", "facing_shape")]
+[node name="Aerial1_2" type="Area2D" parent="HitBoxHandler" node_paths=PackedStringArray("player", "facing_shape")]
 position = Vector2(25, 0.5)
 collision_layer = 8
 collision_mask = 2
 monitoring = false
 script = ExtResource("19_i1om8")
-player = NodePath("..")
+player = NodePath("../..")
 facing_shape = NodePath("CollisionShape2D")
 knockup_percent = 1.0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Aerial1_2"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBoxHandler/Aerial1_2"]
 visible = false
 position = Vector2(-57, -0.5)
 shape = SubResource("RectangleShape2D_yh0j4")
@@ -1990,15 +2003,16 @@ script = ExtResource("18_fygxn")
 facing_left_position = Vector2(-57, -0.5)
 facing_right_position = Vector2(7, -0.5)
 
-[node name="Aerial1_2_2" type="Area2D" parent="." node_paths=PackedStringArray("player", "facing_shape")]
+[node name="Aerial1_2_2" type="Area2D" parent="HitBoxHandler" node_paths=PackedStringArray("player", "facing_shape")]
 position = Vector2(25, 0.5)
 collision_layer = 8
 collision_mask = 2
 script = ExtResource("19_i1om8")
-player = NodePath("..")
+player = NodePath("../..")
 facing_shape = NodePath("CollisionShape2D")
+knockup_percent = 0.25
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Aerial1_2_2"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBoxHandler/Aerial1_2_2"]
 visible = false
 position = Vector2(-45, 5.5)
 shape = SubResource("RectangleShape2D_jp35t")
@@ -2006,15 +2020,14 @@ script = ExtResource("18_fygxn")
 facing_left_position = Vector2(-46, 5.5)
 facing_right_position = Vector2(7.5, 5.5)
 
-[node name="Aerial2" type="Area2D" parent="." node_paths=PackedStringArray("player", "facing_shape")]
+[node name="Aerial2" type="Area2D" parent="HitBoxHandler" node_paths=PackedStringArray("player", "facing_shape")]
 collision_layer = 8
 collision_mask = 2
 script = ExtResource("19_i1om8")
-player = NodePath("..")
+player = NodePath("../..")
 facing_shape = NodePath("../Attack2/CollisionShape2D")
-knockup_percent = 0.75
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Aerial2"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBoxHandler/Aerial2"]
 visible = false
 position = Vector2(-26, 0)
 shape = SubResource("RectangleShape2D_y67bc")
@@ -2022,30 +2035,29 @@ script = ExtResource("18_fygxn")
 facing_left_position = Vector2(-26, 0)
 facing_right_position = Vector2(26, 0)
 
-[node name="Aerial3" type="Area2D" parent="." node_paths=PackedStringArray("player", "facing_shape")]
+[node name="Aerial3" type="Area2D" parent="HitBoxHandler" node_paths=PackedStringArray("player", "facing_shape")]
 collision_layer = 8
 collision_mask = 2
 script = ExtResource("19_i1om8")
-player = NodePath("..")
+player = NodePath("../..")
 facing_shape = NodePath("CollisionShape2D")
-knockup_percent = 0.75
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Aerial3"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBoxHandler/Aerial3"]
 position = Vector2(-24, 1.25)
 shape = SubResource("RectangleShape2D_v6w65")
 script = ExtResource("18_fygxn")
 facing_left_position = Vector2(-24, 1.25)
 facing_right_position = Vector2(24, 1.25)
 
-[node name="AttackSlide" type="Area2D" parent="." node_paths=PackedStringArray("player", "facing_shape")]
+[node name="AttackSlide" type="Area2D" parent="HitBoxHandler" node_paths=PackedStringArray("player", "facing_shape")]
 collision_layer = 8
 collision_mask = 2
 monitoring = false
 script = ExtResource("19_i1om8")
-player = NodePath("..")
+player = NodePath("../..")
 facing_shape = NodePath("CollisionShape2D")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackSlide"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBoxHandler/AttackSlide"]
 visible = false
 position = Vector2(14, 13)
 shape = SubResource("RectangleShape2D_cvhb6")
@@ -2066,17 +2078,17 @@ facing_right_position = Vector2(14, 13)
 [connection signal="animation_finished" from="AnimationTree" to="PlayerStateMachine/Guard" method="_on_animation_tree_animation_finished"]
 [connection signal="animation_finished" from="AnimationTree" to="PlayerStateMachine/Ledge" method="_on_animation_tree_animation_finished"]
 [connection signal="animation_player_changed" from="AnimationTree" to="." method="_on_animation_tree_animation_player_changed"]
-[connection signal="body_entered" from="Attack1" to="Attack1" method="_on_body_entered"]
-[connection signal="body_entered" from="Attack1_2" to="Attack1_2" method="_on_body_entered"]
-[connection signal="body_entered" from="Attack2" to="Attack2" method="_on_body_entered"]
-[connection signal="body_entered" from="Attack2_2" to="Attack2_2" method="_on_body_entered"]
-[connection signal="body_entered" from="Attack2_3" to="Attack2_3" method="_on_body_entered"]
-[connection signal="body_entered" from="Attack2_4" to="Attack2_4" method="_on_body_entered"]
-[connection signal="body_entered" from="Attack3" to="Attack3" method="_on_body_entered"]
-[connection signal="body_entered" from="AttackUp" to="AttackUp" method="_on_body_entered"]
-[connection signal="body_entered" from="Aerial1" to="Aerial1" method="_on_body_entered"]
-[connection signal="body_entered" from="Aerial1_2" to="Aerial1_2" method="_on_body_entered"]
-[connection signal="body_entered" from="Aerial1_2_2" to="Aerial1_2_2" method="_on_body_entered"]
-[connection signal="body_entered" from="Aerial2" to="Aerial2" method="_on_body_entered"]
-[connection signal="body_entered" from="Aerial3" to="Aerial3" method="_on_body_entered"]
-[connection signal="body_entered" from="AttackSlide" to="AttackSlide" method="_on_body_entered"]
+[connection signal="body_entered" from="HitBoxHandler/Attack1" to="HitBoxHandler/Attack1" method="_on_body_entered"]
+[connection signal="body_entered" from="HitBoxHandler/Attack1_2" to="HitBoxHandler/Attack1_2" method="_on_body_entered"]
+[connection signal="body_entered" from="HitBoxHandler/Attack2" to="HitBoxHandler/Attack2" method="_on_body_entered"]
+[connection signal="body_entered" from="HitBoxHandler/Attack2_2" to="HitBoxHandler/Attack2_2" method="_on_body_entered"]
+[connection signal="body_entered" from="HitBoxHandler/Attack2_3" to="HitBoxHandler/Attack2_3" method="_on_body_entered"]
+[connection signal="body_entered" from="HitBoxHandler/Attack2_4" to="HitBoxHandler/Attack2_4" method="_on_body_entered"]
+[connection signal="body_entered" from="HitBoxHandler/Attack3" to="HitBoxHandler/Attack3" method="_on_body_entered"]
+[connection signal="body_entered" from="HitBoxHandler/AttackUp" to="HitBoxHandler/AttackUp" method="_on_body_entered"]
+[connection signal="body_entered" from="HitBoxHandler/Aerial1" to="HitBoxHandler/Aerial1" method="_on_body_entered"]
+[connection signal="body_entered" from="HitBoxHandler/Aerial1_2" to="HitBoxHandler/Aerial1_2" method="_on_body_entered"]
+[connection signal="body_entered" from="HitBoxHandler/Aerial1_2_2" to="HitBoxHandler/Aerial1_2_2" method="_on_body_entered"]
+[connection signal="body_entered" from="HitBoxHandler/Aerial2" to="HitBoxHandler/Aerial2" method="_on_body_entered"]
+[connection signal="body_entered" from="HitBoxHandler/Aerial3" to="HitBoxHandler/Aerial3" method="_on_body_entered"]
+[connection signal="body_entered" from="HitBoxHandler/AttackSlide" to="HitBoxHandler/AttackSlide" method="_on_body_entered"]
