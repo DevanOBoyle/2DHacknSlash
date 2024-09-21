@@ -32,7 +32,6 @@ func on_enter():
 func on_exit():
 	pass
 
-
 func _on_animation_tree_animation_finished(anim_name):
 	if (anim_name == getup_animation):
 		next_state = ground_state

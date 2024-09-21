@@ -1,7 +1,10 @@
-[gd_scene format=3 uid="uid://3iwt4ic71ksa"]
+[gd_scene load_steps=2 format=3 uid="uid://3iwt4ic71ksa"]
+
+[ext_resource type="Script" path="res://scripts/UI/heath_changed_manager.gd" id="1_wg4oa"]
 
 [node name="HeathChangedManager" type="Control"]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+script = ExtResource("1_wg4oa")
